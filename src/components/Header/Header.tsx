@@ -32,7 +32,11 @@ const Header = (props: Props) => {
 
       <section>
         <div className="icon">
-          {props.auth && <FaUserPlus />}
+          {props.auth && (
+            <Link to="/signin">
+              <FaUserPlus />
+            </Link>
+          )}
           {props.config && <FaUserCog />}
         </div>
 
