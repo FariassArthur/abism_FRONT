@@ -1,5 +1,4 @@
 //router
-import { Link, redirect } from "react-router-dom";
 
 type Props = {
   create?: boolean;
@@ -35,7 +34,7 @@ const Account = (props: Props) => {
               <input required type="text" name="confirmPass" />
             </div>
 
-            <input required type="submit" value="Create Account" />
+            <input type="submit" value="Create Account" />
           </form>
 
           <p>
@@ -69,7 +68,7 @@ const Account = (props: Props) => {
               <input required type="text" name="confirmPass" />
             </div>
 
-            <input required type="submit" value="Update Account" />
+            <input type="submit" value="Update Account" />
           </form>
         </>
       )}
@@ -89,7 +88,7 @@ const Account = (props: Props) => {
               <input required type="text" name="pass" />
             </div>
 
-            <input required type="submit" value="LOG IN" />
+            <input type="submit" value="LOG IN" />
           </form>
 
           <p>
