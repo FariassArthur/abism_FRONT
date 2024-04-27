@@ -27,7 +27,7 @@ const Header = (props: Props) => {
       <section>
         <Link to="/">INICIO</Link>
         <Link to="">USUARIO</Link>
-        <Link to="">POEMAS</Link>
+        <Link to="/poems">POEMAS</Link>
       </section>
 
       <section>
