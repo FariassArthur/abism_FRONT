@@ -7,13 +7,7 @@ import styles from "./Header.module.scss";
 import { Link, useLocation } from "react-router-dom";
 
 //icons
-import {
-  FaUserPlus,
-  FaUserCog,
-  FaUserTimes,
-  FaSun,
-  FaMoon,
-} from "react-icons/fa";
+import { FaUserPlus, FaUserCog, FaMoon } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoLogOutSharp } from "react-icons/io5";
 
@@ -21,6 +15,8 @@ interface Props {
   config?: boolean;
   auth?: boolean;
   logout?: boolean;
+
+  toggle: boolean;
 }
 
 const Header = (props: Props) => {
@@ -36,17 +32,6 @@ const Header = (props: Props) => {
               INICIO
             </Link>
             <Link to="">USUARIO</Link>
-            <Link to="/poems">POEMAS</Link>
-          </>
-        );
-        break;
-      case "/signin":
-        setNavLinks(
-          <>
-            <Link to="/">INICIO</Link>
-            <Link className={styles.underline} to="">
-              USUARIO
-            </Link>
             <Link to="/poems">POEMAS</Link>
           </>
         );
@@ -96,35 +81,70 @@ const Header = (props: Props) => {
   }, [location.pathname]);
 
   return (
-    <div className={styles.containner}>
-      <section className="section-nav">{navLinks}</section>
+    <div className={props.toggle ? styles.toggleContainner : styles.containner}>
+      {props.toggle ? (
+        <>
+          <section className={styles.none}>{navLinks}</section>
 
-      <section>
-        <div className="icon">
-          {props.auth && (
-            <Link to="/signin">
-              <FaUserPlus />
-            </Link>
-          )}
-          {props.config && <FaUserCog />}
-        </div>
+          <section className={styles.none}>
+            <div className="icon">
+              {props.auth && (
+                <Link to="/signin">
+                  <FaUserPlus />
+                </Link>
+              )}
+              {props.config && <FaUserCog />}
+            </div>
 
-        <div className="icon">
-          {/* <FaSun /> */}
+            <div className="icon">
+              {/* <FaSun /> */}
 
-          <FaMoon />
-        </div>
+              <FaMoon />
+            </div>
 
-        <div className="icon">
-          <GrLanguage />
-        </div>
+            <div className="icon">
+              <GrLanguage />
+            </div>
 
-        {props.logout && (
-          <div className="icon">
-            <IoLogOutSharp />
-          </div>
-        )}
-      </section>
+            {props.logout && (
+              <div className="icon">
+                <IoLogOutSharp />
+              </div>
+            )}
+          </section>
+        </>
+      ) : (
+        <>
+          <section className="section-nav">{navLinks}</section>
+
+          <section>
+            <div className="icon">
+              {props.auth && (
+                <Link to="/signin">
+                  <FaUserPlus />
+                </Link>
+              )}
+              {props.config && <FaUserCog />}
+            </div>
+
+            <div className="icon">
+              {/* <FaSun /> */}
+
+              <FaMoon />
+            </div>
+
+            <div className="icon">
+              <GrLanguage />
+            </div>
+
+            {props.logout && (
+              <div className="icon">
+                <IoLogOutSharp />
+              </div>
+            )}
+          </section>
+        </>
+      )}
     </div>
   );
 };
