@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 .containner {
     display: flex;
     align-items: center;
@@ -33,4 +35,33 @@
     }
 
 
+}
+
+.toggleContainner {
+    top: 50%;
+    left: 2rem;
+    position: sticky;
+    display: inline-block;
+
+    background-color: #fff;
+    
+    z-index: 4;
+
+    section {
+         a {
+            text-decoration: none;
+            color: #000;
+
+            transition: 0.3s ease-in-out;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #323232;
+        }
+    }
+
+    section:hover {
+        text-decoration: none;
+    }
 }
