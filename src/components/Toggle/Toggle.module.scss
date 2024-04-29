@@ -1,0 +1,21 @@
+#toggle {
+    background-color: #fff;
+    border-radius: 100px;
+    padding: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    top: 45%;
+    left: 1rem;
+
+    //animation
+    cursor: pointer;
+
+    &:hover {
+        background-color: #a0a0a0;
+        transition: 500ms ease-in;
+    }
+}
