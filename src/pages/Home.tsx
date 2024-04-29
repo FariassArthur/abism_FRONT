@@ -2,15 +2,15 @@
 import styles from "./Home.module.scss";
 
 //component
-import Header from "../components/Header/Header";
 import Title from "../components/Title/Title";
 import Info from "../components/Informacoes/Info";
 import CardsContainner from "../components/CardsContainner/CardsContainner";
+import Toggle from "../components/Toggle/Toggle";
 
 const Home = () => {
   return (
     <>
-      <Header toggle={true} auth={true} logout={true} />
+      <Toggle />
 
       <Title />
       <Info />
