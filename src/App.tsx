@@ -16,7 +16,8 @@ import Poems from "./pages/Poems/Poems";
 
 function App() {
   return (
-    <Provider store={store}>
+    <div id="app">
+      <Provider store={store}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
@@ -24,6 +25,8 @@ function App() {
         <Route path="/poems" element={<Poems />} />
       </Routes>
     </Provider>
+    </div>
+    
   );
 }
 

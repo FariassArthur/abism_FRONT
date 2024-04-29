@@ -1,0 +1,30 @@
+#title {
+    .containner {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 10px;
+
+
+        .text {
+            font-size: 5rem;
+            position: absolute;
+
+            .last {
+                margin-left: 10rem;
+            }
+        }
+
+        img {
+            border: 1px solid;
+            border-radius: 10px;
+
+            box-shadow: 0 0 10px 3px #000;
+        }
+    }
+}

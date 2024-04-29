@@ -1,8 +1,10 @@
+import { useState, useEffect } from "react";
+
 //css
-import "./Header.module.scss";
+import styles from "./Header.module.scss";
 
 //router
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 //icons
 import {
@@ -22,13 +24,80 @@ interface Props {
 }
 
 const Header = (props: Props) => {
+  const [navLinks, setNavLinks] = useState<JSX.Element | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        setNavLinks(
+          <>
+            <Link className={styles.underline} to="/">
+              INICIO
+            </Link>
+            <Link to="">USUARIO</Link>
+            <Link to="/poems">POEMAS</Link>
+          </>
+        );
+        break;
+      case "/signin":
+        setNavLinks(
+          <>
+            <Link to="/">INICIO</Link>
+            <Link className={styles.underline} to="">
+              USUARIO
+            </Link>
+            <Link to="/poems">POEMAS</Link>
+          </>
+        );
+        break;
+      case "/login":
+        setNavLinks(
+          <>
+            <Link to="/">INICIO</Link>
+            <Link className={styles.underline} to="">
+              USUARIO
+            </Link>
+            <Link to="/poems">POEMAS</Link>
+          </>
+        );
+        break;
+      case "/signin":
+        setNavLinks(
+          <>
+            <Link to="/">INICIO</Link>
+            <Link className={styles.underline} to="">
+              USUARIO
+            </Link>
+            <Link to="/poems">POEMAS</Link>
+          </>
+        );
+        break;
+      case "/poems":
+        setNavLinks(
+          <>
+            <Link to="/">INICIO</Link>
+            <Link to="">USUARIO</Link>
+            <Link className={styles.underline} to="/poems">
+              POEMAS
+            </Link>
+          </>
+        );
+        break;
+      default:
+        setNavLinks(
+          <>
+            <Link to="/">INICIO</Link>
+            <Link to="">USUARIO</Link>
+            <Link to="/poems">POEMAS</Link>
+          </>
+        );
+    }
+  }, [location.pathname]);
+
   return (
-    <div>
-      <section>
-        <Link to="/">INICIO</Link>
-        <Link to="">USUARIO</Link>
-        <Link to="/poems">POEMAS</Link>
-      </section>
+    <div className={styles.containner}>
+      <section className="section-nav">{navLinks}</section>
 
       <section>
         <div className="icon">
