@@ -1,0 +1,36 @@
+.containner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem;
+
+    .underline {
+        text-decoration: underline;
+    }
+
+    section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+
+         a {
+            text-decoration: none;
+            color: #000;
+
+            transition: 0.3s ease-in-out;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #323232;
+        }
+    }
+
+    section:hover {
+        text-decoration: none;
+    }
+
+
+}
