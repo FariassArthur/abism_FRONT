@@ -1,12 +1,20 @@
+//css
+import styles from "./Poems.module.scss";
+
 //components
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
-import PoemsContent from "../../components/Poems/Poems"
+import Header from "../../components/Header/Header";
+import PoemsContent from "../../components/Poems/Poems";
 
 const Poems = () => {
   return (
-    <div>
-      <BodyHeader />
-      <PoemsContent />
+    <div id={styles.poems}>
+      <Header toggle={false} sticky={false} />
+
+      <section className={styles.content}>
+        <BodyHeader />
+        <PoemsContent />
+      </section>
     </div>
   );
 };
