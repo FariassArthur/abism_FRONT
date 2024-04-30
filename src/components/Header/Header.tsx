@@ -10,6 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaUserPlus, FaUserCog, FaMoon } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoLogOutSharp } from "react-icons/io5";
+import { FaHome } from "react-icons/fa";
 
 interface Props {
   config?: boolean;
@@ -84,9 +85,10 @@ const Header = (props: Props) => {
     <div className={props.toggle ? styles.toggleContainner : styles.containner}>
       {props.toggle ? (
         <>
-          <section className={styles.none}>{navLinks}</section>
+          
+          <section className={styles.navlinks}>{navLinks}</section>
 
-          <section className={styles.none}>
+          <section className={styles.iconsSection}>
             <div className="icon">
               {props.auth && (
                 <Link to="/signin">

@@ -42,10 +42,17 @@
     left: 2rem;
     position: sticky;
     display: inline-block;
+    height: 80%;
 
     background-color: #fff;
+    border-radius: 25px;
+    padding: .2rem;
     
     z-index: 4;
+
+    .underline {
+        text-decoration: underline;
+    }
 
     section {
          a {
@@ -63,5 +70,24 @@
 
     section:hover {
         text-decoration: none;
+    }
+
+    .navlinks {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        gap: .4rem;
+        margin-bottom: .8rem;
+    }
+
+    .iconsSection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+        gap: .4rem;
     }
 }

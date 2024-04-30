@@ -1,16 +1,32 @@
+import { useState } from "react";
+
 //router
 import { Link } from "react-router-dom";
 
+//css
+import styles from "./Card.module.scss"
+
+//icons
+import { FcLike } from "react-icons/fc";
+
 const Card = () => {
+
+  const [countLikes, setCountLikes] = useState<number>(3)
+  
   return (
-    <div id="card">
+    <div id={styles.card}>
+
+      <i> <span>{countLikes}</span><FcLike /></i>
+      
       <section>
         <h3>Título</h3>
         <h4>by: Pedro</h4>
       </section>
 
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, magni soluta nobis officia incidunt accusamus natus at! Eum est voluptate aliquam amet sed maxime incidunt. Odit dignissimos eaque impedit quo.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, magni
+        soluta nobis officia incidunt accusamus natus at! Eum est voluptate
+        aliquam amet sed maxime incidunt. Odit dignissimos eaque impedit quo.
       </p>
 
       <h4>

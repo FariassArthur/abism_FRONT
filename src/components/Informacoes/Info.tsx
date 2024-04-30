@@ -1,17 +1,29 @@
+//css
+import styles from "./Info.module.scss";
+
 //image
-import image from "../../assets/images/asidehome.jpg"
+import image from "../../assets/images/asidehome.jpg";
 
 const Info = () => {
   return (
-    <div id="info">
-        <h2>Informações</h2>
+    <div id={styles.info}>
+      <h1>Informações</h1>
 
-        <section>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate eum optio ab numquam doloremque alias quis voluptatibus iste architecto, nesciunt eaque quo, animi similique minima mollitia ipsa dolores. Laboriosam, vel.</p>
-            <img src={image} alt="" />
-        </section>
+      <section>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+          eum optio ab numquam doloremque alias quis voluptatibus iste
+          architecto, nesciunt eaque quo, animi similique minima mollitia ipsa
+          dolores. Laboriosam, vel. Lorem ipsum dolor, sit amet consectetur
+          adipisicing elit. Hic vero voluptatibus ducimus, quo sunt provident!
+          Necessitatibus corporis reiciendis quos natus itaque eligendi
+          molestias expedita error nostrum illum, repellat blanditiis
+          voluptatibus.
+        </p>
+        <img src={image} alt="" />
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default Info
+export default Info;
