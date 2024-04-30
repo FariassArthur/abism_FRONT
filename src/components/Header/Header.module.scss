@@ -1,14 +1,27 @@
 @import "../../App.scss";
 
+.sticky {
+    position: sticky;
+}
+
 .containner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: .5rem;
 
+    
+    top: 0.3rem;
+    left: 0rem;
     padding: 1rem;
+    z-index: 4;
+
+    box-shadow: 5px 5px 5px 0 #000;
 
     .underline {
-        text-decoration: underline;
+         color: #fff;
+            background-color: #000;
+            text-decoration: underline;
     }
 
     section {
@@ -17,16 +30,20 @@
         gap: 1rem;
 
 
-         a {
+        a {
             text-decoration: none;
             color: #000;
 
-            transition: 0.3s ease-in-out;
+            transition: all .6s ease-in-out;
+
+            background-color: #fff;
+            padding: .1rem;
+            border-radius: 5px;
         }
 
         a:hover {
-            text-decoration: underline;
-            color: #323232;
+            color: #fff;
+            background-color: #000;
         }
     }
 

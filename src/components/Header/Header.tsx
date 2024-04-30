@@ -17,6 +17,7 @@ interface Props {
   auth?: boolean;
   logout?: boolean;
 
+  sticky: boolean;
   toggle: boolean;
 }
 
@@ -81,8 +82,9 @@ const Header = (props: Props) => {
     }
   }, [location.pathname]);
 
+
   return (
-    <div className={props.toggle ? styles.toggleContainner : styles.containner}>
+    <div className={props.toggle ? styles.toggleContainner : props.sticky ? `${styles.containner} ${styles.sticky}`: styles.containner}>
       {props.toggle ? (
         <>
           
