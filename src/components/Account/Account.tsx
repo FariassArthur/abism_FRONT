@@ -1,4 +1,5 @@
-//router
+//css
+import styles from "./Account.module.scss"
 
 type Props = {
   create?: boolean;
@@ -6,11 +7,12 @@ type Props = {
   login?: boolean;
 };
 
+
 const Account = (props: Props) => {
   return (
-    <>
+    <div>
       {props.create && (
-        <>
+        <div id={styles.create}>
           <h2>CREATE YOUR ACCOUNT</h2>
 
           <form action="POST">
@@ -40,7 +42,7 @@ const Account = (props: Props) => {
           <p>
             Já possui conta? <a href="/login">Clique aqui</a>
           </p>
-        </>
+        </div>
       )}
 
       {props.update && (
@@ -96,7 +98,7 @@ const Account = (props: Props) => {
           </p>
         </>
       )}
-    </>
+    </div>
   );
 };
 

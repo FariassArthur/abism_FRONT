@@ -9,7 +9,7 @@ import PoemsContent from "../../components/Poems/Poems";
 const Poems = () => {
   return (
     <div id={styles.poems}>
-      <Header toggle={false} sticky={false} />
+      <Header toggle={false} sticky={false} auth={true} />
 
       <section className={styles.content}>
         <BodyHeader />

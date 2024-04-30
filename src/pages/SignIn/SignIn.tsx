@@ -1,3 +1,6 @@
+//css
+import styles from "./SignIn.module.scss";
+
 //image
 import image from "../../assets/images/asideimage.jpg";
 
@@ -7,12 +10,12 @@ import Header from "../../components/Header/Header";
 
 const SignIn = () => {
   return (
-    <div>
+    <div id={styles.signIn}>
       <div>
-        <Header />
+        <Header sticky={false} toggle={false} config={true} />
       </div>
 
-      <section>
+      <section className={styles.content}>
         <aside>
           <img src={image} alt="" />
         </aside>

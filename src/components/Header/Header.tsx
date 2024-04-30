@@ -82,12 +82,18 @@ const Header = (props: Props) => {
     }
   }, [location.pathname]);
 
-
   return (
-    <div className={props.toggle ? styles.toggleContainner : props.sticky ? `${styles.containner} ${styles.sticky}`: styles.containner}>
+    <div
+      className={
+        props.toggle
+          ? styles.toggleContainner
+          : props.sticky
+          ? `${styles.containner} ${styles.sticky}`
+          : styles.containner
+      }
+    >
       {props.toggle ? (
         <>
-          
           <section className={styles.navlinks}>{navLinks}</section>
 
           <section className={styles.iconsSection}>
