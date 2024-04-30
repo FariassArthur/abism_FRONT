@@ -1,0 +1,63 @@
+#bodyheader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav p, .nav p span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .headerassets {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 1rem;
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #000;
+            padding: .2rem;
+            border-radius: 10px;
+
+            input {
+                background-color: transparent;
+                outline: none;
+                margin-left: .5rem;
+            }
+
+            .search {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+
+        .filterClick {
+            cursor: pointer; 
+        }
+
+        .filterOptions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            position: absolute;
+            right: 1rem;
+            top: 25%;
+
+            border: 1px solid #000;
+            border-radius: 25px;
+            box-shadow: 5px 5px  10px 0 #000;
+            padding: 1rem;
+            gap: 1rem;
+
+            background-color: transparent;
+        }
+    }
+}

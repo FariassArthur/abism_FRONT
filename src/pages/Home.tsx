@@ -5,7 +5,6 @@ import styles from "./Home.module.scss";
 import Title from "../components/Title/Title";
 import Info from "../components/Informacoes/Info";
 import CardsContainner from "../components/CardsContainner/CardsContainner";
-import Toggle from "../components/Toggle/Toggle";
 import Header from "../components/Header/Header";
 
 const Home = () => {
