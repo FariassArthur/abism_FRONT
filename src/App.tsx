@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Signin from "./pages/SignIn/SignIn";
 import Login from "./pages/Login/Login";
 import Poems from "./pages/Poems/Poems";
+import Poem from "./pages/Poem/Poem"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/poems" element={<Poems />} />
+        <Route path="/poem" element={<Poem />} />
       </Routes>
     </Provider>
     </div>
