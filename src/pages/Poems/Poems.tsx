@@ -4,7 +4,7 @@ import styles from "./Poems.module.scss";
 //components
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 import Header from "../../components/Header/Header";
-import PoemsContent from "../../components/Poems/Poems";
+import PoemModal from "../../components/PoemModal/PoemModal";
 
 const Poems = () => {
   return (
@@ -13,7 +13,12 @@ const Poems = () => {
 
       <section className={styles.content}>
         <BodyHeader />
-        <PoemsContent />
+        <div>
+          <PoemModal />
+          <PoemModal />
+          <PoemModal />
+          <PoemModal />
+        </div>
       </section>
     </div>
   );
