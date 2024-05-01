@@ -10,7 +10,7 @@ import Header from "../components/Header/Header";
 const Home = () => {
   return (
     <div id={styles.home}>
-      <Header toggle={false} sticky={true} />
+      <Header toggle={false} sticky={true} auth={true} />
 
       <Title />
       <Info />

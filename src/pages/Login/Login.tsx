@@ -1,3 +1,6 @@
+//css
+import styles from "./Login.module.scss";
+
 //components
 import Account from "../../components/Account/Account";
 import Header from "../../components/Header/Header";
@@ -7,12 +10,12 @@ import image from "../../assets/images/asideimage.jpg";
 
 const Login = () => {
   return (
-    <div>
+    <div id={styles.login}>
       <div className="containner">
-        <Header />
+        <Header toggle={false} auth={true} sticky={false} />
       </div>
 
-      <section>
+      <section className={styles.content}>
         <aside>
           <img src={image} alt="" />
         </aside>
