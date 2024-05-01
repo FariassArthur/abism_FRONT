@@ -1,3 +1,4 @@
+
 #create {
   display: flex;
   align-items: center;
@@ -5,8 +6,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  border: 1px solid;
-
+  min-width: 80vh;
   position: relative;
 
   form {
@@ -31,14 +31,64 @@
       }
     }
 
-    input[type=submit] {
-        border: 1px solid;
-        display: flex;
-        align-items: center;
+    input[type="submit"] {
+      border: 1px solid;
+      display: flex;
+      align-items: center;
 
+      width: 100%;
+      height: 2rem;
+      border-radius: 10px;
+    }
+  }
+
+  p {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+  }
+}
+
+#login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 1rem 1rem 4rem 1rem;
+  gap: 3rem;
+  min-width: 80vh;
+  position: relative;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    gap: 1rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      padding: 0.2rem;
+
+      input {
+        border: 1px solid;
+        border-radius: 5px;
         width: 100%;
         height: 2rem;
-        border-radius: 10px;
+      }
+    }
+
+    input[type="submit"] {
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+
+      width: 100%;
+      height: 2rem;
+      border-radius: 10px;
     }
   }
 

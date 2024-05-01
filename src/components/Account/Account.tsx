@@ -1,12 +1,14 @@
 //css
-import styles from "./Account.module.scss"
+import styles from "./Account.module.scss";
+
+//router
+import { Link } from "react-router-dom";
 
 type Props = {
   create?: boolean;
   update?: boolean;
   login?: boolean;
 };
-
 
 const Account = (props: Props) => {
   return (
@@ -40,13 +42,13 @@ const Account = (props: Props) => {
           </form>
 
           <p>
-            Já possui conta? <a href="/login">Clique aqui</a>
+            Já possui conta? <Link to={"/login"}>Clique aqui</Link>
           </p>
         </div>
       )}
 
       {props.update && (
-        <>
+        <div>
           <h2>UPDATE YOUR ACCOUNT</h2>
 
           <form action="POST">
@@ -72,14 +74,13 @@ const Account = (props: Props) => {
 
             <input type="submit" value="Update Account" />
           </form>
-        </>
+        </div>
       )}
 
       {props.login && (
-        <>
+        <div id={styles.login}>
+          <h2>LOG IN ACCOUNT</h2>
           <form action="POST">
-            <h2>LOG IN ACCOUNT</h2>
-
             <div className="input">
               <label htmlFor="email">Email:</label>
               <input required type="email" name="email" />
@@ -94,9 +95,9 @@ const Account = (props: Props) => {
           </form>
 
           <p>
-            Não possui conta? <a href="/signin">Clique aqui</a>
+            Não possui conta? <Link to={"/signin"}>Clique aqui</Link>
           </p>
-        </>
+        </div>
       )}
     </div>
   );
