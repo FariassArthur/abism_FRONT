@@ -1,17 +1,17 @@
-export const baseUrl = "https://backabism.vercel.app/";
+export const api = "https://backabism.vercel.app/";
 
 interface data {
   method: string;
   data: any;
-  token?: string;
-  image?: string;
+  token: string;
+  image: string;
 }
 
 export const requestConfig = (
   method: data,
   data: data,
-  token: data,
-  image: data
+  token?: data,
+  image?: data
 ) => {
   let config;
 
@@ -37,7 +37,7 @@ export const requestConfig = (
     };
   }
 
-  if (token.token && config.headers) {
+  if (token && config.headers) {
     if (config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${token.token}`;
     }
