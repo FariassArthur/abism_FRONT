@@ -1,43 +1,25 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import authService from "../services/authService";
 
-// Define a type for the slice state
-export interface AuthState {
-  token: string | null;
-  isAuthenticated: boolean;
-  userId: string | null; // Adicione userId ao estado
-}
+const userString = localStorage.getItem("user");
+const user = userString && JSON.parse(userString);
 
-// Define the initial state using that type
-const initialState: AuthState = {
-  token: null,
-  isAuthenticated: false,
-  userId: null, // Inicialize userId como null
-}
+const initialState = {
+  user: user ? user : null,
+  error: false,
+  sucess: false,
+  loading: false,
+};
 
-export const authSlice = createSlice({
-  name: 'auth',
-  // `createSlice` will infer the state type from the `initialState` argument
-  initialState,
-  reducers: {
-    loginSuccess: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
-      state.isAuthenticated = true;
-    },
-    logout: state => {
-      state.token = null;
-      state.isAuthenticated = false;
-    },
-    createAccountSuccess: (state, action: PayloadAction<string>) => {
-      state.userId = action.payload;
-    },
-  },
-});
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    const data = await authService.register(user);
 
-export const { loginSuccess, logout, createAccountSuccess } = authSlice.actions;
+    if (data.error) {
+      return thunkAPI.rejectWithValue(data.errors[0]);
+    }
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectToken = (state: RootState) => state.auth.token;
-export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
-
-export default authSlice.reducer;
+    return data;
+  }
+);
