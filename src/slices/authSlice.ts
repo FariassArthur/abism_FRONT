@@ -5,12 +5,14 @@ import { RootState } from '../store';
 export interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
+  userId: string | null; // Adicione userId ao estado
 }
 
 // Define the initial state using that type
 const initialState: AuthState = {
   token: null,
   isAuthenticated: false,
+  userId: null, // Inicialize userId como null
 }
 
 export const authSlice = createSlice({
@@ -26,10 +28,13 @@ export const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
     },
+    createAccountSuccess: (state, action: PayloadAction<string>) => {
+      state.userId = action.payload;
+    },
   },
 });
 
-export const { loginSuccess, logout } = authSlice.actions;
+export const { loginSuccess, logout, createAccountSuccess } = authSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectToken = (state: RootState) => state.auth.token;
