@@ -9,8 +9,9 @@ const register = async (data: any) => {
     const res: AxiosResponse = await axios.post(api + "/users/create", config);
     const responseData = res.data;
 
-    if (responseData.id) {
-      localStorage.setItem("user", JSON.stringify(responseData.id));
+    if (responseData.id_user) {
+      localStorage.setItem("user", JSON.stringify(responseData.id_user));
+      localStorage.setItem("token", JSON.stringify(responseData.token));
     }
 
     return responseData;

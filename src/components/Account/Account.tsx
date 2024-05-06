@@ -19,12 +19,11 @@ type Props = {
 };
 
 const Account = (props: Props) => {
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
-
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,12 +36,16 @@ const Account = (props: Props) => {
 
     try {
       await dispatch(register(user)); // Aguarde a conclusão da ação register
-      console.log(user)
+      console.log(user);
     } catch (error) {
-      console.error('Erro ao registrar:', error);
+      console.error("Erro ao registrar:", error);
     }
+
+    setName("");
+    setEmail("");
+    setPassword("");
   };
-  
+
   return (
     <div>
       {props.create && (
@@ -52,17 +55,38 @@ const Account = (props: Props) => {
           <form onSubmit={handleSubmit}>
             <div className="input">
               <label htmlFor="name">Name:</label>
-              <input placeholder="Adicione seu nome" required type="text" name="name" value={name || ""} onChange={(e) => setName(e.target.value)} />
+              <input
+                placeholder="Adicione seu nome"
+                required
+                type="text"
+                name="name"
+                value={name || ""}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
 
             <div className="input">
               <label htmlFor="email">Email:</label>
-              <input placeholder="Adicione seu email" required type="email" name="email" value={email || ""} onChange={(e) => setEmail(e.target.value)} />
+              <input
+                placeholder="Adicione seu email"
+                required
+                type="email"
+                name="email"
+                value={email || ""}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="input">
               <label htmlFor="pass">Password:</label>
-              <input placeholder="Adicione sua senha" required type="text" name="pass" value={password || ""} onChange={(e) => setPassword(e.target.value)} />
+              <input
+                placeholder="Adicione sua senha"
+                required
+                type="password"
+                name="pass"
+                value={password || ""}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
 
             <input type="submit" value="Create Account" />
