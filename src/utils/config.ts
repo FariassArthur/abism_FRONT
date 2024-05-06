@@ -1,4 +1,4 @@
-export const api = "https://backabism.vercel.app/";
+export const api = "https://backabism.vercel.app";
 
 export const requestConfig = (
   method: string,

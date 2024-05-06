@@ -6,7 +6,7 @@ const register = async (data: any) => {
   const config = requestConfig("POST", data);
 
   try {
-    const res: AxiosResponse = await axios.post(api + "users/register", config);
+    const res: AxiosResponse = await axios.post(api + "/users/create", config);
     const responseData = res.data;
 
     if (responseData.id) {
