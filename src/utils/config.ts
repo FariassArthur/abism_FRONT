@@ -11,7 +11,6 @@ export const requestConfig = (
 
   if (image) {
     config = {
-      method: method,
       headers: headers,
     };
   } else if (method === "DELETE") {
@@ -27,7 +26,6 @@ export const requestConfig = (
     }
 
     config = {
-      method: method,
       headers: headers,
     };
   }
