@@ -2,10 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../services/authService";
 
 const userString = localStorage.getItem("user");
+const tokenString = localStorage.getItem("token");
+
 const user = userString && JSON.parse(userString);
+const token = tokenString && JSON.parse(tokenString);
 
 const initialState = {
   user: user ? user : null,
+  token: token ? token : null,
   error: false as string | boolean,
   success: false,
   loading: false,
@@ -90,4 +94,4 @@ export const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer
+export default authSlice.reducer;
