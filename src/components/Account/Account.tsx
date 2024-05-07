@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 //redux
 import { useDispatch } from "react-redux";
-import { register } from "../../slices/authSlice";
+import { register, login } from "../../slices/authSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 
 type Props = {
@@ -25,7 +25,7 @@ const Account = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateAccount = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const user = {
@@ -36,12 +36,29 @@ const Account = (props: Props) => {
 
     try {
       await dispatch(register(user)); // Aguarde a conclusão da ação register
-      console.log(user);
     } catch (error) {
       console.error("Erro ao registrar:", error);
     }
 
     setName("");
+    setEmail("");
+    setPassword("");
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const user = {
+      email,
+      password,
+    };
+
+    try {
+      await dispatch(login(user));
+    } catch (error) {
+      console.error("Erro ao logar:", error);
+    }
+
     setEmail("");
     setPassword("");
   };
@@ -52,7 +69,7 @@ const Account = (props: Props) => {
         <div id={styles.create}>
           <h2>CREATE YOUR ACCOUNT</h2>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleCreateAccount}>
             <div className="input">
               <label htmlFor="name">Name:</label>
               <input
@@ -131,15 +148,28 @@ const Account = (props: Props) => {
       {props.login && (
         <div id={styles.login}>
           <h2>LOG IN ACCOUNT</h2>
-          <form action="POST">
+          <form onSubmit={handleLogin}>
             <div className="input">
               <label htmlFor="email">Email:</label>
-              <input required type="email" name="email" />
+              <input
+              placeholder="Adicione seu email"
+                required
+                type="email"
+                name="email"
+                value={email || ""}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="input">
               <label htmlFor="pass">Password:</label>
-              <input required type="text" name="pass" />
+              <input
+                required
+                type="password"
+                name="pass"
+                value={password || ""}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
 
             <input type="submit" value="LOG IN" />

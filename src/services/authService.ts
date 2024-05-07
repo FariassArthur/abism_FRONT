@@ -5,7 +5,11 @@ const register = async (data: any) => {
   const config = requestConfig("POST", data);
 
   try {
-    const res: AxiosResponse<any> = await axios.post(api + "/users/create", data, config);
+    const res: AxiosResponse<any> = await axios.post(
+      api + "/users/create",
+      data,
+      config
+    );
     const responseData = res.data;
 
     if (responseData.id_user) {
@@ -23,21 +27,18 @@ const register = async (data: any) => {
 //Logout an user
 const logout = () => {
   localStorage.removeItem("user");
-  localStorage.removeItem("token")
+  localStorage.removeItem("token");
 };
 
 const login = async (data: any) => {
-  const config = requestConfig("POST", data);
-
+  console.log(data)
   try {
-    const res = await fetch(api + "users/login", config);
-    if (!res.ok) {
-      throw new Error('Erro ao efetuar login'); // Trata erros de rede ou resposta inesperada
-    }
-    const responseData = await res.json();
+    const res: AxiosResponse<any> = await axios.post(api + "/users/login", data);
+    const responseData = res.data;
 
-    if (responseData.id) {
-      localStorage.setItem("user", JSON.stringify(responseData));
+    if (responseData.id_user) {
+      localStorage.setItem("user", JSON.stringify(responseData.id_user));
+      localStorage.setItem("token", JSON.stringify(responseData.token));
     }
 
     return responseData;
