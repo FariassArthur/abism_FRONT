@@ -2,38 +2,34 @@ export const api = "https://backabism.vercel.app";
 
 export const requestConfig = (
   method: string,
-  data: any,
   token?: string,
   image?: string
 ) => {
-  let config;
+  let config = {};
+
+  const headers = new Headers();
 
   if (image) {
     config = {
       method: method,
-      body: data,
-      headers: {},
+      headers: headers,
     };
-  } else if (method === "DELETE" || data === null) {
+  } else if (method === "DELETE") {
     config = {
       method: method,
-      headers: {},
+      headers: headers,
     };
   } else {
+    headers.append("Content-Type", "application/json");
+
+    if (token) {
+      headers.append("Authorization", `Bearer ${token}`);
+    }
+
     config = {
       method: method,
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": ""
-      },
+      headers: headers,
     };
-  }
-
-  if (token && config.headers) {
-    if (config.headers.Authorization) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
   }
 
   return config;
