@@ -8,8 +8,8 @@ const user = userString && JSON.parse(userString);
 const token = tokenString && JSON.parse(tokenString);
 
 const initialState = {
-  user: user ? user : null,
-  token: token ? token : null,
+  userState: user ? user : null,
+  tokenState: token ? token : null,
   error: false as string | boolean,
   success: false,
   loading: false,
@@ -34,16 +34,32 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 });
 
 //Sign in an user
-export const login = createAsyncThunk("auth/login", async (user: any, thunkAPI) => {
-  const data = await authService.login(user);
-  console.log(data)
+export const login = createAsyncThunk(
+  "auth/login",
+  async (user: any, thunkAPI) => {
+    const data = await authService.login(user);
+    console.log(data);
 
-  if (data.error) {
-    return thunkAPI.rejectWithValue(data.error[0]);
+    if (data.error) {
+      return thunkAPI.rejectWithValue(data.error[0]);
+    }
+
+    return data;
   }
+);
 
-  return data;
-});
+export const update = createAsyncThunk(
+  "auth/update",
+  async(user: any, thunkAPI) => {
+    const data = await authService.update(user)
+
+    if(data.error) {
+      return thunkAPI.rejectWithValue(data.error[0])
+    }
+
+    return data
+  }
+)
 
 export const authSlice = createSlice({
   name: "auth",
@@ -65,18 +81,20 @@ export const authSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.user = action.payload;
+        state.userState = action.payload;
+        state.tokenState = action.payload.token;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = typeof action.payload === "string" && action.payload;
-        state.user = null;
+        state.userState = null;
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.user = null;
+        state.userState = null;
+        state.tokenState = null;
       })
       .addCase(login.pending, (state) => {
         state.loading = true;
@@ -86,7 +104,8 @@ export const authSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.user = action.payload;
+        state.userState = action.payload;
+        state.tokenState = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -95,5 +114,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const {reset} = authSlice.actions
+export const { reset } = authSlice.actions;
 export default authSlice.reducer;

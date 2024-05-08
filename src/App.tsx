@@ -14,6 +14,7 @@ import Signin from "./pages/SignIn/SignIn";
 import Login from "./pages/Login/Login";
 import Poems from "./pages/Poems/Poems";
 import Poem from "./pages/Poem/Poem"
+import UserAccount from "./pages/UserAccount/UserAccount";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/poems" element={<Poems />} />
         <Route path="/poem" element={<Poem />} />
+        <Route path="/account" element={<UserAccount />} />
       </Routes>
     </Provider>
     </div>

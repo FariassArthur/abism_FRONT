@@ -31,9 +31,11 @@ const logout = () => {
 };
 
 const login = async (data: any) => {
-  console.log(data)
   try {
-    const res: AxiosResponse<any> = await axios.post(api + "/users/login", data);
+    const res: AxiosResponse<any> = await axios.post(
+      api + "/users/login",
+      data
+    );
     const responseData = res.data;
 
     if (responseData.id_user) {
@@ -48,10 +50,26 @@ const login = async (data: any) => {
   }
 };
 
+const update = async (data: any) => {
+  try {
+    const res: AxiosResponse<any> = await axios.post(
+      api + "/users/update",
+      data
+    );
+    const responseData = res.data;
+
+    return responseData;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const authService = {
   register,
   logout,
   login,
+  update,
 };
 
 export default authService;
