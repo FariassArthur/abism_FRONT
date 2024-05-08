@@ -1,0 +1,44 @@
+#userAccount {
+  .containner {
+    padding: 0.5rem;
+
+    .infoUser {
+      display: flex;
+      align-items: center;
+
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid;
+
+      div {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-right: 2rem;
+        border-right: 1px solid;
+      }
+
+      aside {
+        padding-left: 2rem;
+        text-decoration: none;
+
+        cursor: pointer;
+        
+        a {
+          color: black;
+        }
+
+      }
+    }
+
+    .cards {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      margin-left: 2%;
+
+      gap: 1rem;
+    }
+  }
+}
