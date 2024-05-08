@@ -1,5 +1,5 @@
 //react
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //css
 import styles from "./Account.module.scss";
@@ -8,9 +8,14 @@ import styles from "./Account.module.scss";
 import { Link } from "react-router-dom";
 
 //redux
-import { useDispatch } from "react-redux";
-import { register, login } from "../../slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { register, login, reset } from "../../slices/authSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+
+//icons
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { MdErrorOutline } from "react-icons/md";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 type Props = {
   create?: boolean;
@@ -20,6 +25,7 @@ type Props = {
 
 const Account = (props: Props) => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const { loading, error } = useSelector((state: any) => state.auth);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -62,6 +68,10 @@ const Account = (props: Props) => {
     setEmail("");
     setPassword("");
   };
+
+  useEffect(() => {
+    dispatch(reset());
+  }, [dispatch]);
 
   return (
     <div>
@@ -106,7 +116,30 @@ const Account = (props: Props) => {
               />
             </div>
 
-            <input type="submit" value="Create Account" />
+            {!loading && (
+              <div className={styles.submit}>
+                <i>
+                  <FaArrowRightToBracket />
+                </i>
+                <input type="submit" value="Create Account" />
+              </div>
+            )}
+            {loading && (
+              <div className={styles.submit}>
+                <i>
+                  <AiOutlineLoading3Quarters />
+                </i>
+                <input type="submit" value="Carregando" />
+              </div>
+            )}
+            {error && (
+              <div className={styles.submit}>
+                <i>
+                  <MdErrorOutline />
+                </i>
+                <input type="submit" value="Tente novamente" />
+              </div>
+            )}
           </form>
 
           <p>
@@ -140,7 +173,30 @@ const Account = (props: Props) => {
               <input required type="text" name="confirmPass" />
             </div>
 
-            <input type="submit" value="Update Account" />
+            {!loading && (
+              <div className={styles.submit}>
+                <i>
+                  <FaArrowRightToBracket />
+                </i>
+                <input type="submit" value="UPDATE" />
+              </div>
+            )}
+            {loading && (
+              <div className={styles.submit}>
+                <i>
+                  <AiOutlineLoading3Quarters />
+                </i>
+                <input type="submit" value="Carregando" />
+              </div>
+            )}
+            {error && (
+              <div className={styles.submit}>
+                <i>
+                  <MdErrorOutline />
+                </i>
+                <input type="submit" value="Tente novamente" />
+              </div>
+            )}
           </form>
         </div>
       )}
@@ -152,7 +208,7 @@ const Account = (props: Props) => {
             <div className="input">
               <label htmlFor="email">Email:</label>
               <input
-              placeholder="Adicione seu email"
+                placeholder="Adicione seu email"
                 required
                 type="email"
                 name="email"
@@ -172,7 +228,30 @@ const Account = (props: Props) => {
               />
             </div>
 
-            <input type="submit" value="LOG IN" />
+            {!loading && (
+              <div className={styles.submit}>
+                <i>
+                  <FaArrowRightToBracket />
+                </i>
+                <input type="submit" value="LOG IN" />
+              </div>
+            )}
+            {loading && (
+              <div className={styles.submit}>
+                <i>
+                  <AiOutlineLoading3Quarters />
+                </i>
+                <input type="submit" value="Carregando" />
+              </div>
+            )}
+            {error && (
+              <div className={styles.submit}>
+                <i>
+                  <MdErrorOutline />
+                </i>
+                <input type="submit" value="Tente novamente" />
+              </div>
+            )}
           </form>
 
           <p>
