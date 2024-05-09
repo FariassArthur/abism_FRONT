@@ -13,15 +13,11 @@ import Card from "../../components/Card/Card";
 import { FaPencilAlt } from "react-icons/fa";
 
 //router
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 const UserAccount = () => {
   const [name, setName] = useState("Pedro");
   const [email, setEmail] = useState("Pedro@gmail.com");
-
-  const handleEdit = (e: React.MouseEvent) => {
-    e.preventDefault();
-  };
 
   return (
     <div id={styles.userAccount}>
@@ -39,7 +35,7 @@ const UserAccount = () => {
           </aside>
         </section>
 
-        <section className={styles.cards} onClick={handleEdit}>
+        <section className={styles.cards}>
           <Card />
         </section>
       </div>

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { register, login, reset } from "../../slices/authSlice";
+import { register, login, reset, update } from "../../slices/authSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 
 //icons
@@ -30,6 +30,7 @@ const Account = (props: Props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
   const handleCreateAccount = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,6 +70,24 @@ const Account = (props: Props) => {
     setPassword("");
   };
 
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (confirmPass === password) {
+      const user = {
+        name,
+        email,
+        password,
+      };
+
+      try {
+        await dispatch(update(user));
+      } catch (error) {
+        console.error("Erro ao atualizar:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     dispatch(reset());
   }, [dispatch]);
@@ -80,7 +99,7 @@ const Account = (props: Props) => {
           <h2>CREATE YOUR ACCOUNT</h2>
 
           <form onSubmit={handleCreateAccount}>
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="name">Name:</label>
               <input
                 placeholder="Adicione seu nome"
@@ -92,7 +111,7 @@ const Account = (props: Props) => {
               />
             </div>
 
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="email">Email:</label>
               <input
                 placeholder="Adicione seu email"
@@ -104,7 +123,7 @@ const Account = (props: Props) => {
               />
             </div>
 
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="pass">Password:</label>
               <input
                 placeholder="Adicione sua senha"
@@ -149,28 +168,52 @@ const Account = (props: Props) => {
       )}
 
       {props.update && (
-        <div>
+        <div id={styles.update}>
           <h2>UPDATE YOUR ACCOUNT</h2>
 
-          <form action="POST">
-            <div className="input">
+          <form onSubmit={handleUpdate}>
+            <div className={styles.inputContainner}>
               <label htmlFor="name">Name:</label>
-              <input required type="text" name="name" />
+              <input
+                required
+                type="text"
+                name="name"
+                value={name || ""}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
 
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="email">Email:</label>
-              <input required type="email" name="email" />
+              <input
+                required
+                type="email"
+                name="email"
+                value={email || ""}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="pass">Password:</label>
-              <input required type="text" name="pass" />
+              <input
+                required
+                type="text"
+                name="pass"
+                value={password || ""}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
 
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="confirmPass">Confirm Password:</label>
-              <input required type="text" name="confirmPass" />
+              <input
+                required
+                type="text"
+                name="confirmPass"
+                value={confirmPass || ""}
+                onChange={(e) => setConfirmPass(e.target.value)}
+              />
             </div>
 
             {!loading && (
@@ -205,7 +248,7 @@ const Account = (props: Props) => {
         <div id={styles.login}>
           <h2>LOG IN ACCOUNT</h2>
           <form onSubmit={handleLogin}>
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="email">Email:</label>
               <input
                 placeholder="Adicione seu email"
@@ -217,7 +260,7 @@ const Account = (props: Props) => {
               />
             </div>
 
-            <div className="input">
+            <div className={styles.inputContainner}>
               <label htmlFor="pass">Password:</label>
               <input
                 required
