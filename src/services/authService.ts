@@ -51,10 +51,23 @@ const login = async (data: any) => {
 };
 
 const update = async (data: any) => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    throw new Error("Token not found in localStorage");
+  }
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${JSON.parse(token)}`
+    }
+  }
+  
   try {
     const res: AxiosResponse<any> = await axios.post(
       api + "/users/update",
-      data
+      data,
+      config
     );
     const responseData = res.data;
 

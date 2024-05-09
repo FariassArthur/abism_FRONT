@@ -27,11 +27,20 @@ interface Props {
 }
 
 const Header = (props: Props) => {
+  const [userLink, setUserLink] = useState("/login");
   const [navLinks, setNavLinks] = useState<JSX.Element | null>(null);
   const location = useLocation();
 
   const { userState } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  useEffect(() => {
+    if (userState) {
+      setUserLink("/account");
+    } else {
+      setUserLink("/login");
+    }
+  }, [userState]);
 
   useEffect(() => {
     switch (location.pathname) {
@@ -41,7 +50,7 @@ const Header = (props: Props) => {
             <Link className={styles.underline} to="/">
               INICIO
             </Link>
-            <Link to="/signin">USUARIO</Link>
+            <Link to={userLink}>USUARIO</Link>
             <Link to="/poems">POEMAS</Link>
           </>
         );
@@ -50,12 +59,9 @@ const Header = (props: Props) => {
         setNavLinks(
           <>
             <Link to="/">INICIO</Link>
-            {userState && (
-              <Link className={styles.underline} to="/signin">
-                USUARIO
-              </Link>
-            )}
-
+            <Link className={styles.underline} to={userLink}>
+              USUARIO
+            </Link>
             <Link to="/poems">POEMAS</Link>
           </>
         );
@@ -64,7 +70,7 @@ const Header = (props: Props) => {
         setNavLinks(
           <>
             <Link to="/">INICIO</Link>
-            <Link className={styles.underline} to="/signin">
+            <Link className={styles.underline} to={userLink}>
               USUARIO
             </Link>
             <Link to="/poems">POEMAS</Link>
@@ -75,7 +81,7 @@ const Header = (props: Props) => {
         setNavLinks(
           <>
             <Link to="/">INICIO</Link>
-            <Link to="/signin">USUARIO</Link>
+            <Link to={userLink}>USUARIO</Link>
             <Link className={styles.underline} to="/poems">
               POEMAS
             </Link>
@@ -86,7 +92,7 @@ const Header = (props: Props) => {
         setNavLinks(
           <>
             <Link to="/">INICIO</Link>
-            <Link to="">USUARIO</Link>
+            <Link to={userLink}>USUARIO</Link>
             <Link to="/poems">POEMAS</Link>
           </>
         );
@@ -118,7 +124,11 @@ const Header = (props: Props) => {
                   <FaUserPlus />
                 </Link>
               )}
-              {userState && <FaUserCog />}
+              {userState && (
+                <Link to={"/update"}>
+                  <FaUserCog />
+                </Link>
+              )}
             </div>
 
             <div className={styles.icon}>
@@ -149,7 +159,11 @@ const Header = (props: Props) => {
                   <FaUserPlus />
                 </Link>
               )}
-              {userState && <FaUserCog />}
+              {userState && (
+                <Link to={"/update"}>
+                  <FaUserCog />
+                </Link>
+              )}
             </div>
 
             <div className={styles.icon}>
