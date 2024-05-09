@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login";
 import Poems from "./pages/Poems/Poems";
 import Poem from "./pages/Poem/Poem"
 import UserAccount from "./pages/UserAccount/UserAccount";
+import Update from "./pages/Update/Update";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/poems" element={<Poems />} />
         <Route path="/poem" element={<Poem />} />
         <Route path="/account" element={<UserAccount />} />
+        <Route path="/update" element={<Update />} />
       </Routes>
     </Provider>
     </div>
