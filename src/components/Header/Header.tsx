@@ -27,20 +27,22 @@ interface Props {
 }
 
 const Header = (props: Props) => {
-  const [userLink, setUserLink] = useState("/login");
+  const [userLink, setUserLink] = useState("/account");
   const [navLinks, setNavLinks] = useState<JSX.Element | null>(null);
   const location = useLocation();
 
-  const { userState } = useSelector((state: any) => state.auth);
+  const { token } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
-    if (userState) {
+    if (token) {
       setUserLink("/account");
     } else {
       setUserLink("/login");
     }
-  }, [userState]);
+  }, [token]);
+
+
 
   useEffect(() => {
     switch (location.pathname) {
@@ -119,12 +121,12 @@ const Header = (props: Props) => {
 
           <section className={styles.iconsSection}>
             <div className={styles.icon}>
-              {!userState && (
+              {!token && (
                 <Link to="/signin">
                   <FaUserPlus />
                 </Link>
               )}
-              {userState && (
+              {token && (
                 <Link to={"/update"}>
                   <FaUserCog />
                 </Link>
@@ -154,12 +156,12 @@ const Header = (props: Props) => {
 
           <section className={styles.navIcons}>
             <div className={styles.icon}>
-              {!userState && (
+              {!token && (
                 <Link to="/signin">
                   <FaUserPlus />
                 </Link>
               )}
-              {userState && (
+              {token && (
                 <Link to={"/update"}>
                   <FaUserCog />
                 </Link>
@@ -176,7 +178,7 @@ const Header = (props: Props) => {
               <GrLanguage />
             </div>
 
-            {userState && (
+            {token && (
               <div onClick={handleLogout} className={styles.iconLogout}>
                 <IoLogOutSharp />
               </div>
