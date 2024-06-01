@@ -8,6 +8,7 @@ import image from "../../assets/images/headerimage.png";
 
 //components
 import Card from "../../components/Card/Card";
+import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
 //icons
 import { FaPencilAlt } from "react-icons/fa";
@@ -17,12 +18,15 @@ import { Link, redirect } from "react-router-dom";
 
 const UserAccount = () => {
   const [name, setName] = useState("Pedro");
-  const [email, setEmail] = useState("Pedro@gmail.com");
+  const [email, setEmail] = useState("teste@teste.com");
+
+  
 
   return (
     <div id={styles.userAccount}>
       <img src={image} alt="" />
       <div className={styles.containner}>
+        <BodyHeader />
         <section className={styles.infoUser}>
           <div>
             <h1>{name}</h1>

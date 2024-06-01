@@ -7,6 +7,9 @@ import { FaSearch } from "react-icons/fa";
 //css
 import styles from "./BodyHeader.module.scss";
 
+//router
+import { Link } from "react-router-dom";
+
 type Props = {};
 
 const BodyHeader = (props: Props) => {
@@ -16,7 +19,7 @@ const BodyHeader = (props: Props) => {
     <div id={styles.bodyheader}>
       <div className={styles.nav}>
         <p>
-          <span className={styles.inicio}>INICIO</span> {<MdArrowRight />} <span>USUARIO</span>{" "}
+          <span className={styles.inicio}><Link to="/">INICIO</Link></span> {<MdArrowRight />} <span>USUARIO</span>{" "}
         </p>
       </div>
 

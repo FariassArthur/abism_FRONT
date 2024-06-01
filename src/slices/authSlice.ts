@@ -1,15 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../services/authService";
 
-const userString = localStorage.getItem("user");
+
 const tokenString = localStorage.getItem("token");
 
-const user = userString && JSON.parse(userString);
 const token = tokenString && JSON.parse(tokenString);
 
 const initialState = {
-  userState: user ? user : null,
-  tokenState: token ? token : null,
+  user: null,
+  token: token ? token : null,
   error: false as string | boolean,
   success: false,
   loading: false,
@@ -38,20 +37,6 @@ export const login = createAsyncThunk(
   "auth/login",
   async (user: any, thunkAPI) => {
     const data = await authService.login(user);
-    console.log(data);
-
-    if (data.error) {
-      return thunkAPI.rejectWithValue(data.error[0]);
-    }
-
-    return data;
-  }
-);
-
-export const update = createAsyncThunk(
-  "auth/update",
-  async (user: any, thunkAPI) => {
-    const data = await authService.update(user);
 
     if (data.error) {
       return thunkAPI.rejectWithValue(data.error[0]);
@@ -81,20 +66,20 @@ export const authSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.userState = action.payload;
-        state.tokenState = action.payload.token;
+        state.user = action.payload;
+        state.token = action.payload.token;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = typeof action.payload === "string" && action.payload;
-        state.userState = null;
+        state.user = null;
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.userState = null;
-        state.tokenState = null;
+        state.user = null;
+        state.token = null;
       })
       .addCase(login.pending, (state) => {
         state.loading = true;
@@ -104,27 +89,12 @@ export const authSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.userState = action.payload;
-        state.tokenState = action.payload.token;
+        state.user = action.payload;
+        state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = typeof action.payload === "string" && action.payload;
-      })
-      .addCase(update.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(update.fulfilled, (state, action) => {
-        state.loading = false;
-        state.success = true;
-        state.error = false;
-        state.userState = action.payload;
-      })
-      .addCase(update.rejected, (state, action) => {
-        state.loading = false;
-        state.error = typeof action.payload === "string" && action.payload;
-        state.userState = null;
       });
   },
 });

@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { register, login, reset, update } from "../../slices/authSlice";
+import { register, login, reset } from "../../slices/authSlice";
+import { update } from "../../slices/userSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 
 //icons

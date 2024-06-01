@@ -39,37 +39,8 @@ const login = async (data: any) => {
     const responseData = res.data;
 
     if (responseData.id_user) {
-      localStorage.setItem("user", JSON.stringify(responseData.id_user));
       localStorage.setItem("token", JSON.stringify(responseData.token));
     }
-
-    return responseData;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
-const update = async (data: any) => {
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    throw new Error("Token not found in localStorage");
-  }
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${JSON.parse(token)}`
-    }
-  }
-  
-  try {
-    const res: AxiosResponse<any> = await axios.post(
-      api + "/users/update",
-      data,
-      config
-    );
-    const responseData = res.data;
 
     return responseData;
   } catch (error) {
@@ -82,7 +53,6 @@ const authService = {
   register,
   logout,
   login,
-  update,
 };
 
 export default authService;
