@@ -20,8 +20,6 @@ const UserAccount = () => {
   const [name, setName] = useState("Pedro");
   const [email, setEmail] = useState("teste@teste.com");
 
-  
-
   return (
     <div id={styles.userAccount}>
       <img src={image} alt="" />
