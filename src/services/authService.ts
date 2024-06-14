@@ -26,8 +26,8 @@ const register = async (data: any) => {
 
 //Logout an user
 const logout = () => {
-  localStorage.removeItem("user");
   localStorage.removeItem("token");
+  localStorage.removeItem("user");
 };
 
 const login = async (data: any) => {
@@ -38,7 +38,7 @@ const login = async (data: any) => {
     );
     const responseData = res.data;
 
-    if (responseData.id_user) {
+    if (responseData.token) {
       localStorage.setItem("token", JSON.stringify(responseData.token));
     }
 
