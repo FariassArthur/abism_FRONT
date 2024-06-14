@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //styles
 import styles from "./UserAccount.module.scss";
@@ -16,30 +16,51 @@ import { FaPencilAlt } from "react-icons/fa";
 //router
 import { Link, redirect } from "react-router-dom";
 
+//redux
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { profile } from "../../slices/userSlice";
+
 const UserAccount = () => {
+  const { user, loading, error } = useSelector((state: any) => state.user);
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
   const [name, setName] = useState("Pedro");
   const [email, setEmail] = useState("teste@teste.com");
+
+  useEffect(() => {
+    dispatch(profile());
+
+    setName(user.name)
+    setEmail(user.email)
+  }, [dispatch]);
 
   return (
     <div id={styles.userAccount}>
       <img src={image} alt="" />
       <div className={styles.containner}>
-        <BodyHeader />
-        <section className={styles.infoUser}>
-          <div>
-            <h1>{name}</h1>
-            <p>{email}</p>
-          </div>
-          <aside>
-            <Link to={"/update"}>
-              <FaPencilAlt />
-            </Link>
-          </aside>
-        </section>
+        {user ? (
+          <>
+            <BodyHeader />
+            <section className={styles.infoUser}>
+              <div>
+                <h1>{name}</h1>
+                <p>{email}</p>
+              </div>
+              <aside>
+                <Link to={"/update"}>
+                  <FaPencilAlt />
+                </Link>
+              </aside>
+            </section>
 
-        <section className={styles.cards}>
-          <Card />
-        </section>
+            <section className={styles.cards}>
+              <Card />
+            </section>
+          </>
+        ) : (
+          <h1>Não há usuário</h1>
+        )}
       </div>
     </div>
   );
