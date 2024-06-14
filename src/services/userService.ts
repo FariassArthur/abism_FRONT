@@ -3,17 +3,15 @@ import { api, requestConfig } from "../utils/config";
 //axios
 import axios, { AxiosResponse } from "axios";
 
-const profile = async (data: any, token: string) => {
+const profile = async (token: string) => {
+  const config = requestConfig("GET", token);
 
-  const config = requestConfig("GET", token)
-  
   try {
     const res = await axios.get(api + "/users/profile", config);
-    const responseData = res.data;
 
-    return responseData;
+    return res.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

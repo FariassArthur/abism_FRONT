@@ -13,12 +13,12 @@ const initialState = {
 //Get user details
 export const profile = createAsyncThunk(
   "user/profile",
-  async (user, thunkAPI) => {
+  async (user: any, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
 
     const token = state.auth.token;
 
-    const data = await userService.profile(user, token);
+    const data = await userService.profile(token);
 
     return data;
   }
