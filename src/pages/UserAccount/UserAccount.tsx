@@ -20,25 +20,33 @@ import { Link } from "react-router-dom";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../../slices/userSlice";
+import { RootState } from "../../store";
 
 const UserAccount = () => {
   const [name, setName] = useState("Pedro");
   const [email, setEmail] = useState("teste@teste.com");
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const { user, loading, error } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     dispatch(profile());
   }, [dispatch]);
 
- /*  if (loading) {
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+    }
+  }, [user]);
+
+  if (loading) {
     return <h1>Loading...</h1>;
   }
 
   if (error) {
     return <h1>Error: {error}</h1>;
   }
- */
   return (
     <div id={styles.userAccount}>
       <img src={image} alt="" />
