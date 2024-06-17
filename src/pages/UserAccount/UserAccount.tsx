@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 
-//styles
+// styles
 import styles from "./UserAccount.module.scss";
 
-//image
+// image
 import image from "../../assets/images/headerimage.png";
 
-//components
+// components
 import Card from "../../components/Card/Card";
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
-//icons
+// icons
 import { FaPencilAlt } from "react-icons/fa";
 
-//router
-import { Link, redirect } from "react-router-dom";
+// router
+import { Link } from "react-router-dom";
 
-//redux
+// redux
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../../slices/userSlice";
@@ -30,10 +30,22 @@ const UserAccount = () => {
 
   useEffect(() => {
     dispatch(profile());
-
-    setName(user.name)
-    setEmail(user.email)
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+    }
+  }, [user]);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error: {error}</h1>;
+  }
 
   return (
     <div id={styles.userAccount}>

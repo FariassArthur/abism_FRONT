@@ -30,9 +30,16 @@ export const profile = createAsyncThunk("user/profile", async (_, thunkAPI) => {
 
   const token = state.auth.token;
 
-  const data = await userService.profile(token);
+  if (!token) {
+    return thunkAPI.rejectWithValue("Token not found");
+  }
 
-  return data;
+  try {
+    const data = await userService.profile(token);
+    return data;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 export const update = createAsyncThunk(
