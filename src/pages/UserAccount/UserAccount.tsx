@@ -23,54 +23,48 @@ import { profile } from "../../slices/userSlice";
 import { RootState } from "../../store";
 
 const UserAccount = () => {
-  const [name, setName] = useState("Pedro");
-  const [email, setEmail] = useState("teste@teste.com");
-
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const { user, loading, error } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     dispatch(profile());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (user) {
-      setName(user.name);
-      setEmail(user.email);
-    }
-  }, [user]);
+  const { user, loading, error } = useSelector(
+    (state: RootState) => state.user
+  );
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
   return (
-    <div id={styles.userAccount}>
-      <img src={image} alt="" />
-      <div className={styles.containner}>
+    <>
+      {user && (
         <>
-          <BodyHeader />
-          <section className={styles.infoUser}>
-            <div>
-              <h1>{name}</h1>
-              <p>{email}</p>
-            </div>
-            <aside>
-              <Link to={"/update"}>
-                <FaPencilAlt />
-              </Link>
-            </aside>
-          </section>
+          <div id={styles.userAccount}>
+            <img src={image} alt="" />
+            <div className={styles.containner}>
+              <>
+                <BodyHeader />
+                <section className={styles.infoUser}>
+                  <div>
+                    <h1>{user?.name}</h1>
+                    <p>{user?.email}</p>
+                  </div>
+                  <aside>
+                    <Link to={"/update"}>
+                      <FaPencilAlt />
+                    </Link>
+                  </aside>
+                </section>
 
-          <section className={styles.cards}>
-            <Card />
-          </section>
+                <section className={styles.cards}>
+                  <Card />
+                </section>
+              </>
+            </div>
+          </div>
         </>
-      </div>
-    </div>
+      )}
+      {error && <h1>Error: {error}</h1>}
+      {loading && <h1>Loading...</h1>}
+    </>
   );
 };
 

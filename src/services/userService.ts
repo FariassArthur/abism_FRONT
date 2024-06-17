@@ -4,15 +4,17 @@ import { api, requestConfig } from "../utils/config";
 import axios, { AxiosResponse } from "axios";
 
 const profile = async (token: any) => {
-  const config = requestConfig("GET", token);
-
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   try {
-    const res = await axios.get(api + "/users/profile", token);
+    const res = await axios.get(api + "/users/profile", config);
 
     return res.data;
-    console.log(res.data)
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 

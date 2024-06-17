@@ -35,9 +35,9 @@ export const profile = createAsyncThunk("user/profile", async (_, thunkAPI) => {
   }
 
   try {
-    console.log("slice")
     const data = await userService.profile(token);
     return data;
+    console.log(data)
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message);
   }
