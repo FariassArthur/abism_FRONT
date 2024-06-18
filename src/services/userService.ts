@@ -13,7 +13,6 @@ const profile = async (token: any) => {
     const res = await axios.get(api + "/users/profile", config);
 
     return res.data;
-    console.log(res.data)
   } catch (error) {
     console.log(error);
   }

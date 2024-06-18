@@ -46,39 +46,39 @@ const UserAccount = () => {
 
   return (
     <>
-      {loading && <h1>Loading...</h1>}
       {error && <h1>Error: {error}</h1>}
-      {user && (
+      {user ? (
         <div id={styles.userAccount}>
-        <img src={image} alt="" />
-        <div className={styles.containner}>
-          <>
-            <BodyHeader />
-            <section className={styles.infoUser}>
-              <div>
-                <h1>{user.name}</h1>
-                <p>{user.email}</p>
-              </div>
-              <aside>
-                <Link to={"/update"}>
-                  <FaPencilAlt />
-                </Link>
-              </aside>
-            </section>
+          <img src={image} alt="" />
+          <div className={styles.containner}>
+            <>
+              <BodyHeader searchAssets={false} />
+              <section className={styles.infoUser}>
+                <div>
+                  <h1>{name}</h1>
+                  <p>{email}</p>
+                </div>
+                <aside>
+                  <Link to={"/update"}>
+                    <FaPencilAlt />
+                  </Link>
+                </aside>
+              </section>
 
-            <section className={styles.cards}>
-              <Card />
-            </section>
-          </>
+              <section className={styles.cards}>
+                <Card />
+              </section>
+            </>
+          </div>
         </div>
-      </div>
+      ) : (
+        loading && <h1>Loading...</h1>
       )}
     </>
   );
 };
 
 export default UserAccount;
-
 
 /* 
 <div id={styles.userAccount}>

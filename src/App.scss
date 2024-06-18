@@ -1,3 +1,6 @@
+$link_dark: #000;
+$link_dark_hover: #333;
+
 #app {
     width: 100%;
 
@@ -11,4 +14,15 @@ img {
 
 .none {
     display: none;
+}
+
+a {
+    text-decoration: none;
+    color: $link_dark;
+    transition: .5s ease-in-out;
+}
+
+a:hover {
+    color: #333;
+    border-bottom: 1px solid;
 }

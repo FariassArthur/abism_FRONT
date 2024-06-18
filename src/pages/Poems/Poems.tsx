@@ -12,7 +12,7 @@ const Poems = () => {
       <Header toggle={false} sticky={false} auth={true} />
 
       <section className={styles.content}>
-        <BodyHeader />
+        <BodyHeader searchAssets={true} />
         <div>
           <PoemModal />
           <PoemModal />

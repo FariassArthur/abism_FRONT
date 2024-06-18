@@ -10,7 +10,9 @@ import styles from "./BodyHeader.module.scss";
 //router
 import { Link } from "react-router-dom";
 
-type Props = {};
+type Props = {
+  searchAssets: boolean;
+};
 
 const BodyHeader = (props: Props) => {
   const [onFilter, setOnFilter] = useState<boolean>(false);
@@ -19,23 +21,32 @@ const BodyHeader = (props: Props) => {
     <div id={styles.bodyheader}>
       <div className={styles.nav}>
         <p>
-          <span className={styles.inicio}><Link to="/">INICIO</Link></span> {<MdArrowRight />} <span>USUARIO</span>{" "}
+          <span className={styles.inicio}>
+            <Link to="/">INICIO</Link>
+          </span>
+          {<MdArrowRight />}
+          <span>USUARIO</span>
+          {<MdArrowRight />}
+          <span>
+            <Link to={"/poems"}>POEMS</Link>
+          </span>
         </p>
       </div>
 
-      <div className={styles.headerassets}>
+      {props.searchAssets && (
+        <div className={styles.headerassets}>
         <form action="">
-            <i className={styles.search}><FaSearch /></i>
-            
-            <input type="text" />
-          
+          <i className={styles.search}>
+            <FaSearch />
+          </i>
+
+          <input type="text" />
         </form>
 
-        <div className={styles.filter}>
+        <div className={styles.filter}></div>
 
-        </div>
-
-        <p className={styles.filterClick}
+        <p
+          className={styles.filterClick}
           onClick={() => {
             if (onFilter === true) {
               setOnFilter(false);
@@ -57,6 +68,9 @@ const BodyHeader = (props: Props) => {
 
         {/* map para os dados */}
       </div>
+      )}
+
+      
     </div>
   );
 };
