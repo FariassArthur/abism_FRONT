@@ -23,55 +23,85 @@ import { profile } from "../../slices/userSlice";
 import { RootState } from "../../store";
 
 const UserAccount = () => {
-  const [name, setName] = useState("Pedro");
-  const [email, setEmail] = useState("teste@teste.com");
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const { user, loading, error } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     dispatch(profile());
   }, [dispatch]);
 
+  const { user, loading, error } = useSelector(
+    (state: RootState) => state.user
+  );
+
   useEffect(() => {
-    if (user) {
-      setName(user.name);
+    if (user && user) {
+      console.log(user);
       setEmail(user.email);
+      setName(user.name);
     }
   }, [user]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
   return (
-    <div id={styles.userAccount}>
-      <img src={image} alt="" />
-      <div className={styles.containner}>
-        <>
-          <BodyHeader />
-          <section className={styles.infoUser}>
-            <div>
-              <h1>{name}</h1>
-              <p>{email}</p>
-            </div>
-            <aside>
-              <Link to={"/update"}>
-                <FaPencilAlt />
-              </Link>
-            </aside>
-          </section>
+    <>
+      {error && <h1>Error: {error}</h1>}
+      {user ? (
+        <div id={styles.userAccount}>
+          <img src={image} alt="" />
+          <div className={styles.containner}>
+            <>
+              <BodyHeader searchAssets={false} />
+              <section className={styles.infoUser}>
+                <div>
+                  <h1>{name}</h1>
+                  <p>{email}</p>
+                </div>
+                <aside>
+                  <Link to={"/update"}>
+                    <FaPencilAlt />
+                  </Link>
+                </aside>
+              </section>
 
-          <section className={styles.cards}>
-            <Card />
-          </section>
-        </>
-      </div>
-    </div>
+              <section className={styles.cards}>
+                <Card />
+              </section>
+            </>
+          </div>
+        </div>
+      ) : (
+        loading && <h1>Loading...</h1>
+      )}
+    </>
   );
 };
 
 export default UserAccount;
+
+/* 
+<div id={styles.userAccount}>
+            <img src={image} alt="" />
+            <div className={styles.containner}>
+              <>
+                <BodyHeader />
+                <section className={styles.infoUser}>
+                  <div>
+                    <h1>{user.name}</h1>
+                    <p>{user.email}</p>
+                  </div>
+                  <aside>
+                    <Link to={"/update"}>
+                      <FaPencilAlt />
+                    </Link>
+                  </aside>
+                </section>
+
+                <section className={styles.cards}>
+                  <Card />
+                </section>
+              </>
+            </div>
+          </div>
+ */
