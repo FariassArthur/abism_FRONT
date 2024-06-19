@@ -1,13 +1,19 @@
 //css
 import styles from "./PoemModal.module.scss";
 
-const PoemModal = () => {
+interface Props {
+  title: string;
+  userName: string;
+  date: number;
+}
+
+const PoemModal = (props: Props) => {
   return (
     <div id={styles.poemModel}>
-      <h1>Título</h1>
-      <h3>by: {"Pedro"}</h3>
+      <h1>{props.title}</h1>
+      <h3>by: {props.userName}</h3>
 
-      <p>Maio 1, 2024</p>
+      <p>{props.date}</p>
     </div>
   );
 };
