@@ -10,14 +10,14 @@ interface Poem {
 }
 
 interface PoemState {
-  poem: Poem | null;
+  poem: Poem[];
   loading: boolean;
   error: string | boolean;
   success: boolean;
 }
 
 const initialState: PoemState = {
-  poem: null,
+  poem: [],
   error: false,
   success: false,
   loading: false,
@@ -25,16 +25,14 @@ const initialState: PoemState = {
 
 export const poems = createAsyncThunk("poem/poems", async (_, thunkAPI) => {
   const state = thunkAPI.getState() as RootState;
-
   const token = state.auth.token;
-
   const data = await poemService.takePoems(token);
 
   if (data.error) {
     return thunkAPI.rejectWithValue(data.error[0]);
   }
 
-  return data;
+  return data.data;
 });
 
 export const poemSlice = createSlice({
@@ -42,7 +40,7 @@ export const poemSlice = createSlice({
   initialState,
   reducers: {
     resetContent: (state) => {
-      state.poem = null;
+      state.poem = [];
     },
   },
   extraReducers: (builder) => {
@@ -60,8 +58,10 @@ export const poemSlice = createSlice({
       .addCase(poems.rejected, (state, action) => {
         state.loading = false;
         state.success = false;
-        state.poem = null;
+        state.poem = [];
         state.error = typeof action.payload === "string" && action.payload;
       });
   },
 });
+
+export default poemSlice.reducer;

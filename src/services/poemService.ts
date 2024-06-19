@@ -1,7 +1,5 @@
 import { api } from "../utils/config";
-
-//axios
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 const takePoems = async (token: any) => {
   const config = {
@@ -11,11 +9,11 @@ const takePoems = async (token: any) => {
   };
 
   try {
-    const res = await axios.get(api + "/users/takePoems", config);
-
+    const res = await axios.get(api + "/poems/takepoems", config);
     return res.data;
   } catch (error) {
     console.error(error);
+    return { error: ["Erro ao buscar poemas"] };
   }
 };
 
