@@ -16,6 +16,9 @@ import { FaPencilAlt } from "react-icons/fa";
 // router
 import { Link } from "react-router-dom";
 
+//icons
+import { FaPlus } from "react-icons/fa";
+
 // redux
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,7 +69,11 @@ const UserAccount = () => {
               </section>
 
               <section className={styles.cards}>
-                <Card />
+                <i className={styles.plusIcon}>
+                  <Link to={"/create"}><FaPlus /></Link>
+                  
+                </i>
+                <Card create={false} />
               </section>
             </>
           </div>

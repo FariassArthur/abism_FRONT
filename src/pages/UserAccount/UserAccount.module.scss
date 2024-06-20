@@ -22,11 +22,10 @@
         text-decoration: none;
 
         cursor: pointer;
-        
+
         a {
           color: black;
         }
-
       }
     }
 
@@ -39,6 +38,28 @@
       margin-left: 2%;
 
       gap: 1rem;
+
+      .plusIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 2rem;
+
+        border: 1px solid #000;
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px 1px #000;
+      }
+
+      .plusIcon:hover {
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px 1px #bbb;
+
+      }
     }
   }
 }
