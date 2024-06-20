@@ -14,6 +14,18 @@ const CreatePoem = (props: Props) => {
           <img src={image} alt="" />
           <div className={styles.containner}>
               <BodyHeader searchAssets={false} />
+
+              <section className={styles.infoPoem}>
+                <span>9/02/2002</span>
+                <h1>Title</h1>
+                <p>by: <span>Florencio</span></p>
+              </section>
+
+              <form>
+                <textarea name="" id="">
+                  
+                </textarea>
+              </form>
           </div>
     </div>
   )
