@@ -4,20 +4,26 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 //css
-import styles from "./Card.module.scss"
+import styles from "./Card.module.scss";
 
 //icons
 import { FcLike } from "react-icons/fc";
 
-const Card = () => {
+interface Props {
+  create: boolean;
+}
 
-  const [countLikes, setCountLikes] = useState<number>(3)
-  
+const Card = (props: Props) => {
+  const [countLikes, setCountLikes] = useState<number>(3);
+
   return (
     <div id={styles.card}>
+      <i className={styles.likeIcon}>
+        {" "}
+        <span>{countLikes}</span>
+        <FcLike />
+      </i>
 
-      <i> <span>{countLikes}</span><FcLike /></i>
-      
       <section>
         <h3>Título</h3>
         <h4>by: Pedro</h4>
