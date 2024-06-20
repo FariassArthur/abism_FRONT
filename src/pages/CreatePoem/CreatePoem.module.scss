@@ -2,4 +2,20 @@
   .containner {
     padding: 0.5rem;
   }
+
+  .infoPoem {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: .5rem;
+
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #bbb;
+
+    h1 {
+      font-size: xx-large;
+    }
+  }
 }
