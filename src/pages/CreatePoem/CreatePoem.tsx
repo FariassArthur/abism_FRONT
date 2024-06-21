@@ -10,9 +10,7 @@ import { IoIosArrowDropright } from "react-icons/io";
 // component
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
-type Props = {};
-
-const CreatePoem = (props: Props) => {
+const CreatePoem = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const resizeTextarea = () => {
@@ -35,23 +33,28 @@ const CreatePoem = (props: Props) => {
     };
   }, [textareaRef]);
 
+  const handleCreatePoem = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+
+  };
+
   return (
     <div id={styles.createPoem}>
       <img src={image} alt="" />
       <div className={styles.container}>
         <BodyHeader searchAssets={false} />
 
-        <form>
+        <form onSubmit={handleCreatePoem}>
           <section className={styles.infoPoem}>
             <div>
-              <span>9/02/2002</span>
-              <h1>Title</h1>
+              <input type="text" placeholder="Insira o título" />
               <p>
                 by: <span>Florencio</span>
               </p>
             </div>
 
-            <button type="submit">
+            <button className={styles.btnSubmit} type="submit">
               <IoIosArrowDropright size={20} className={styles.iconArrow} />
             </button>
           </section>
