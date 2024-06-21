@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./CreatePoem.module.scss";
 
 // image
@@ -10,7 +10,17 @@ import { IoIosArrowDropright } from "react-icons/io";
 // component
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
+//redux
+import { useDispatch } from "react-redux";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { createPoem } from "../../slices/poemSlice";
+
 const CreatePoem = () => {
+  const [title, setTitle] = useState<string | null>(null);
+  const [content, setContent] = useState<string | null>(null);
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const resizeTextarea = () => {
@@ -33,10 +43,22 @@ const CreatePoem = () => {
     };
   }, [textareaRef]);
 
-  const handleCreatePoem = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreatePoem = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const poem = {
+      title,
+      content,
+    };
 
+    try {
+      await dispatch(createPoem(poem));
+    } catch (err) {
+      console.error("Erro ao criar poema:", err);
+    }
+
+    setTitle("")
+    setContent("")
   };
 
   return (
@@ -48,7 +70,13 @@ const CreatePoem = () => {
         <form onSubmit={handleCreatePoem}>
           <section className={styles.infoPoem}>
             <div>
-              <input type="text" placeholder="Insira o título" />
+              <input
+                type="text"
+                placeholder="Insira o título"
+                name="title"
+                value={title || ""}
+                onChange={(e) => setTitle(e.target.value)}
+              />
               <p>
                 by: <span>Florencio</span>
               </p>
@@ -65,6 +93,8 @@ const CreatePoem = () => {
               name="content"
               id=""
               required
+              value={content || ""}
+              onChange={(e) => setContent(e.target.value)}
               placeholder="Digite seu texto"
             ></textarea>
           </div>
