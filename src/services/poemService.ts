@@ -1,4 +1,4 @@
-import { api } from "../utils/config";
+import { api, requestConfig } from "../utils/config";
 import axios from "axios";
 
 const takePoems = async (token: any) => {
@@ -17,7 +17,11 @@ const takePoems = async (token: any) => {
   }
 };
 
-const createPoem = async (token: any) => {
+const createPoem = async (data: any, token: any) => {
+  if (!token) {
+    throw new Error("Token not found in localStorage");
+  }
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -25,9 +29,7 @@ const createPoem = async (token: any) => {
   };
 
   try {
-    const res = await axios.get(api + "/poems/create", config);
-
-    return res.data;
+    await axios.post(api + "/poems/create", data, config);
   } catch (err) {
     return { "Erro ao criar o poema, checar a API": err };
   }

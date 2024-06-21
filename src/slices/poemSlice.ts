@@ -23,6 +23,16 @@ const initialState: PoemState = {
   loading: false,
 };
 
+export const createPoem = createAsyncThunk(
+  "poem/createPoem",
+  async (data: any, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const token = state.auth.token;
+
+    await poemService.createPoem(data, token);
+  }
+);
+
 export const poems = createAsyncThunk("poem/poems", async (_, thunkAPI) => {
   const state = thunkAPI.getState() as RootState;
   const token = state.auth.token;
