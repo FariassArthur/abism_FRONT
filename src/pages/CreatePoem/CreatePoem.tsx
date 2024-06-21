@@ -46,16 +46,13 @@ const CreatePoem = (props: Props) => {
             <div>
               <span>9/02/2002</span>
               <h1>Title</h1>
-              <p> 
+              <p>
                 by: <span>Florencio</span>
               </p>
             </div>
 
-            <button>
-              <i>
-                <IoIosArrowDropright />
-              </i>
-              <input type="submit" placeholder="nada" />
+            <button type="submit">
+              <IoIosArrowDropright size={20} className={styles.iconArrow} />
             </button>
           </section>
 
