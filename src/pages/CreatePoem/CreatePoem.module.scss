@@ -21,12 +21,15 @@
       flex-direction: column;
     }
 
-    h1 {
+    input[type="text"] {
       font-size: xx-large;
       color: red;
+
+      outline: none;
+      text-decoration: none;
     }
 
-    button {
+    .btnSubmit {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -37,14 +40,19 @@
 
       box-sizing: border-box;
 
-      background-color: transparent;
-
       transition: 0.2s ease-in-out;
 
-      :hover {
+      &:hover {
         cursor: pointer;
 
         background-color: #bbb;
+      }
+
+      &:active {
+        width: 2rem;
+        height: 2rem;
+
+        margin-right: 2rem;
       }
     }
   }
