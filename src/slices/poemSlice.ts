@@ -37,8 +37,11 @@ export const createPoem = createAsyncThunk(
 
 export const takeById = createAsyncThunk(
   "poems/takeById",
-  async (id: string) => {
-    const data = await poemService.takePoemById(id);
+  async (id: string, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const token = state.auth.token;
+
+    const data = await poemService.takePoemById(id, token);
 
     return data.data;
   }

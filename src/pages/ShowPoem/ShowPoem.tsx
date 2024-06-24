@@ -39,6 +39,8 @@ const ShowPoem = () => {
     if (poem) {
       setTitle(poem.name);
       setContent(poem.content);
+
+      console.log(poem);
     }
   }, [poem]);
 
