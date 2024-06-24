@@ -35,14 +35,20 @@ const createPoem = async (data: any, token: any) => {
   }
 };
 
-const takePoemById = async (id: number) => {
-  
-}
+const takePoemById = async (id: string) => {
+  try {
+    const res = await axios.get(`${api}/poems/:${id}`);
+
+    return res.data;
+  } catch (error) {
+    return { "Erro ao buscar poema pelo ID": error };
+  }
+};
 
 const poemService = {
   takePoems,
   createPoem,
-  takePoemById
+  takePoemById,
 };
 
 export default poemService;
