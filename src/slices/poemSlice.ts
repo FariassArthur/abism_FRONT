@@ -10,14 +10,16 @@ interface Poem {
 }
 
 interface PoemState {
-  poem: Poem[];
+  poems: Poem[];
+  poem: Poem | null;
   loading: boolean;
-  error: string | boolean;
+  error: any;
   success: boolean;
 }
 
 const initialState: PoemState = {
-  poem: [],
+  poems: [],
+  poem: null,
   error: false,
   success: false,
   loading: false,
@@ -30,6 +32,15 @@ export const createPoem = createAsyncThunk(
     const token = state.auth.token;
 
     await poemService.createPoem(data, token);
+  }
+);
+
+export const takeById = createAsyncThunk(
+  "poems/takeById",
+  async (id: string) => {
+    const data = await poemService.takePoemById(id);
+
+    return data.data;
   }
 );
 
@@ -50,7 +61,7 @@ export const poemSlice = createSlice({
   initialState,
   reducers: {
     resetContent: (state) => {
-      state.poem = [];
+      state.poems = [];
     },
   },
   extraReducers: (builder) => {
@@ -63,13 +74,29 @@ export const poemSlice = createSlice({
         state.loading = false;
         state.error = false;
         state.success = true;
-        state.poem = action.payload;
+        state.poems = action.payload;
       })
       .addCase(poems.rejected, (state, action) => {
         state.loading = false;
         state.success = false;
-        state.poem = [];
+        state.poems = [];
         state.error = typeof action.payload === "string" && action.payload;
+      })
+      .addCase(takeById.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(takeById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+        state.success = true;
+        state.poem = action.payload;
+      })
+      .addCase(takeById.rejected, (state, action) => {
+        state.loading = false;
+        state.success = false;
+        state.poem = null;
+        state.error = action.payload;
       });
   },
 });

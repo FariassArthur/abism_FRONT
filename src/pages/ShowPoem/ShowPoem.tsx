@@ -10,21 +10,37 @@ import { IoIosArrowDropright } from "react-icons/io";
 // component
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
+//router
+import { useParams } from "react-router-dom";
+
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+import { takeById } from "../../slices/poemSlice";
+import { RootState } from "../../store";
 
 const ShowPoem = () => {
+  const { id } = useParams();
+
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
 
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  const handleShowPoem = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (id) {
+      dispatch(takeById(id));
+    }
+  }, []);
 
-    setTitle("")
-    setContent("")
-  };
+  const { poem } = useSelector((state: RootState) => state.poem);
+
+  useEffect(() => {
+    if (poem) {
+      setTitle(poem.name);
+      setContent(poem.content);
+    }
+  }, [poem]);
 
   return (
     <div id={styles.ShowPoem}>
@@ -32,7 +48,7 @@ const ShowPoem = () => {
       <div className={styles.container}>
         <BodyHeader searchAssets={false} />
 
-        <form onSubmit={handleShowPoem}>
+        <form>
           <section className={styles.infoPoem}>
             <div>
               <input
@@ -54,9 +70,7 @@ const ShowPoem = () => {
 
           <div className={styles.containnerForm}>
             <textarea
-              
               name="content"
-              id=""
               required
               value={content || ""}
               onChange={(e) => setContent(e.target.value)}
