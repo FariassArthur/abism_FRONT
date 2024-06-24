@@ -69,11 +69,17 @@ const UserAccount = () => {
               </section>
 
               <section className={styles.cards}>
-                <i className={styles.plusIcon}>
-                  <Link to={"/create"}><FaPlus /></Link>
-                  
-                </i>
-                <Card create={false} />
+                <Link to={"/create"}>
+                  <section className={styles.card}>
+                    <i className={styles.plusIcon}>
+                      <FaPlus />
+                    </i>
+                  </section>
+                </Link>
+
+                <section className={styles.card}>
+                  <Card create={false} />
+                </section>
               </section>
             </>
           </div>

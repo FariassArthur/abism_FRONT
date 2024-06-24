@@ -17,6 +17,7 @@ import Poem from "./pages/Poem/Poem";
 import UserAccount from "./pages/UserAccount/UserAccount";
 import Update from "./pages/Update/Update";
 import CreatePoem from "./pages/CreatePoem/CreatePoem";
+import ShowPoem from "./pages/ShowPoem/ShowPoem";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/account" element={<UserAccount />} />
           <Route path="/update" element={<Update />} />
           <Route path="/create" element={<CreatePoem />} />
+          <Route path="/poem/:id" element={<ShowPoem />} />
         </Routes>
       </Provider>
     </div>

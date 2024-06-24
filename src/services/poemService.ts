@@ -35,9 +35,14 @@ const createPoem = async (data: any, token: any) => {
   }
 };
 
+const takePoemById = async (id: number) => {
+  
+}
+
 const poemService = {
   takePoems,
   createPoem,
+  takePoemById
 };
 
 export default poemService;
