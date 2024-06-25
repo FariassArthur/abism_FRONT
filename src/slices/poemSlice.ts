@@ -12,6 +12,7 @@ interface Poem {
 interface PoemState {
   poem: Poem[];
   poemUnique: Poem | null;
+  userPoems: Poem[] | null;
   loading: boolean;
   error: any;
   success: boolean;
@@ -20,6 +21,7 @@ interface PoemState {
 const initialState: PoemState = {
   poem: [],
   poemUnique: null,
+  userPoems: null,
   error: false,
   success: false,
   loading: false,
@@ -114,6 +116,22 @@ export const poemSlice = createSlice({
         state.loading = false;
         state.success = false;
         state.poemUnique = null;
+        state.error = action.payload;
+      })
+      .addCase(takeUserPoemsSlice.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(takeUserPoemsSlice.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = false;
+        state.error = false;
+        state.userPoems = action.payload;
+      })
+      .addCase(takeUserPoemsSlice.rejected, (state, action) => {
+        state.loading = false;
+        state.success = false;
+        state.userPoems = null;
         state.error = action.payload;
       });
   },

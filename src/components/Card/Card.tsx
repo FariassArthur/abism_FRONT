@@ -9,8 +9,10 @@ import styles from "./Card.module.scss";
 //icons
 import { FcLike } from "react-icons/fc";
 
+
 interface Props {
   create: boolean;
+  data: any;
 }
 
 const Card = (props: Props) => {
@@ -25,15 +27,11 @@ const Card = (props: Props) => {
       </i>
 
       <section>
-        <h3>Título</h3>
+        <h3>{props.data && props.data.title}</h3>
         <h4>by: Pedro</h4>
       </section>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, magni
-        soluta nobis officia incidunt accusamus natus at! Eum est voluptate
-        aliquam amet sed maxime incidunt. Odit dignissimos eaque impedit quo.
-      </p>
+      <p>{props.data && props.data.content}</p>
 
       <h4>
         <Link to="">Seguir Lendo</Link>

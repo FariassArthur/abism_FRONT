@@ -23,6 +23,7 @@ import { FaPlus } from "react-icons/fa";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../../slices/userSlice";
+import { takeUserPoemsSlice } from "../../slices/poemSlice";
 import { RootState } from "../../store";
 
 const UserAccount = () => {
@@ -46,6 +47,13 @@ const UserAccount = () => {
       setName(user.name);
     }
   }, [user]);
+
+  useEffect(() => {
+    dispatch(takeUserPoemsSlice());
+  }, []);
+
+  const { userPoems } = useSelector((state: RootState) => state.poem);
+  console.log(userPoems);
 
   return (
     <>
@@ -77,8 +85,17 @@ const UserAccount = () => {
                   </section>
                 </Link>
 
-                <section className={styles.card}>
-                  <Card create={false} />
+                <section className={styles.cardList}>
+                  {userPoems &&
+                    userPoems.map((poemItem) => (
+                      <div className="card">
+                        <Card
+                          create={false}
+                          key={poemItem.id}
+                          data={poemItem}
+                        />
+                      </div>
+                    ))}
                 </section>
               </section>
             </>
