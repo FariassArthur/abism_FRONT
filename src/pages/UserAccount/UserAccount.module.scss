@@ -29,6 +29,18 @@
       }
     }
 
+    .cardList {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      .card {
+        width: 3rem;
+        height: 5rem;
+      }
+    }
+    
     .cards {
       display: flex;
       align-items: center;
