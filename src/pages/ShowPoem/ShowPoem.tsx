@@ -24,6 +24,7 @@ const ShowPoem = () => {
 
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
+  const [owner, setOwner] = useState<boolean>(false);
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
@@ -33,11 +34,16 @@ const ShowPoem = () => {
     }
   }, []);
 
-  const { poem } = useSelector((state: RootState) => state.poem);
+  const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
+  const { user } = useSelector((state: RootState) => state.user);
+
+  if (user && user.id === poem?.user_id) {
+    setOwner(true);
+  }
 
   useEffect(() => {
     if (poem) {
-      setTitle(poem.name);
+      setTitle(poem.title);
       setContent(poem.content);
 
       console.log(poem);
@@ -45,7 +51,7 @@ const ShowPoem = () => {
   }, [poem]);
 
   return (
-    <div id={styles.ShowPoem}>
+    <div id={styles.showPoem}>
       <img src={image} alt="" />
       <div className={styles.container}>
         <BodyHeader searchAssets={false} />

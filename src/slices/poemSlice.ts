@@ -4,22 +4,22 @@ import { RootState } from "../store";
 
 interface Poem {
   id: string;
-  name: string;
+  title: string;
   content: string;
   user_id: string;
 }
 
 interface PoemState {
-  poems: Poem[];
-  poem: Poem | null;
+  poem: Poem[];
+  poemUnique: Poem | null;
   loading: boolean;
   error: any;
   success: boolean;
 }
 
 const initialState: PoemState = {
-  poems: [],
-  poem: null,
+  poem: [],
+  poemUnique: null,
   error: false,
   success: false,
   loading: false,
@@ -64,7 +64,7 @@ export const poemSlice = createSlice({
   initialState,
   reducers: {
     resetContent: (state) => {
-      state.poems = [];
+      state.poem = [];
     },
   },
   extraReducers: (builder) => {
@@ -77,12 +77,12 @@ export const poemSlice = createSlice({
         state.loading = false;
         state.error = false;
         state.success = true;
-        state.poems = action.payload;
+        state.poem = action.payload;
       })
       .addCase(poems.rejected, (state, action) => {
         state.loading = false;
         state.success = false;
-        state.poems = [];
+        state.poem = [];
         state.error = typeof action.payload === "string" && action.payload;
       })
       .addCase(takeById.pending, (state) => {
@@ -93,12 +93,12 @@ export const poemSlice = createSlice({
         state.loading = false;
         state.error = false;
         state.success = true;
-        state.poem = action.payload;
+        state.poemUnique = action.payload;
       })
       .addCase(takeById.rejected, (state, action) => {
         state.loading = false;
         state.success = false;
-        state.poem = null;
+        state.poemUnique = null;
         state.error = action.payload;
       });
   },

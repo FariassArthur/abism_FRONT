@@ -47,7 +47,7 @@ const takePoemById = async (id: string, token: any) => {
   };
 
   try {
-    const res = await axios.get(`${api}/poems/:${id}`, config);
+    const res = await axios.get(`${api}/poems/${id}`, config);
 
     return res.data;
   } catch (error) {

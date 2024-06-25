@@ -30,6 +30,7 @@ const Poems = () => {
               poem.map((poemItem: any) => (
                 <PoemModal
                   key={poemItem.id}
+                  id={poemItem.id}
                   title={poemItem.title}
                   userName={""}
                   date={poemItem.createdat}
