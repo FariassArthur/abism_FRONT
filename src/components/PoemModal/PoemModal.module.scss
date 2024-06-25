@@ -1,8 +1,20 @@
 #poemModel {
   padding: 1rem;
   margin-top: 1rem;
+  border-radius: 10px;
 
   border-bottom: 1px solid;
+  cursor: pointer;
+
+  transition: .1s ease-in-out;
+
+  &:hover {
+    background-color: #bbb;
+  }
+
+  &:active {
+    margin-left: 1rem;
+  }
 
   h3 {
     font-weight: 100;
