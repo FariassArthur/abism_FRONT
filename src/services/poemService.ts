@@ -55,10 +55,31 @@ const takePoemById = async (id: string, token: any) => {
   }
 };
 
+const takeUserPoems = async (token: any) => {
+  if (!token) {
+    throw new Error("Token not found in localStorage");
+  }
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const res = await axios.get(`${api}/poems/poemuser`, config);
+
+    return res.data;
+  } catch (err) {
+    return { "Erro no serviço de busca pelos poemas do usuário": err };
+  }
+};
+
 const poemService = {
   takePoems,
   createPoem,
   takePoemById,
+  takeUserPoems,
 };
 
 export default poemService;

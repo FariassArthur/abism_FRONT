@@ -35,11 +35,6 @@ const ShowPoem = () => {
   }, []);
 
   const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
-  const { user } = useSelector((state: RootState) => state.user);
-
-  if (user && user.id === poem?.user_id) {
-    setOwner(true);
-  }
 
   useEffect(() => {
     if (poem) {
@@ -65,21 +60,25 @@ const ShowPoem = () => {
                 name="title"
                 value={title || ""}
                 onChange={(e) => setTitle(e.target.value)}
+                disabled={!owner}
               />
               <p>
                 by: <span>Florencio</span>
               </p>
             </div>
 
-            <button className={styles.btnSubmit} type="submit">
-              <IoIosArrowDropright size={20} className={styles.iconArrow} />
-            </button>
+            {owner && (
+              <button className={styles.btnSubmit} type="submit">
+                <IoIosArrowDropright size={20} className={styles.iconArrow} />
+              </button>
+            )}
           </section>
 
           <div className={styles.containnerForm}>
             <textarea
               name="content"
               required
+              disabled={!owner}
               value={content || ""}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Digite seu texto"

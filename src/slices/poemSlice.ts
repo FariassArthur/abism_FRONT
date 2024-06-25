@@ -59,6 +59,21 @@ export const poems = createAsyncThunk("poem/poems", async (_, thunkAPI) => {
   return data.data;
 });
 
+export const takeUserPoemsSlice = createAsyncThunk(
+  "poem/takeUserPoems",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const token = state.auth.token;
+    const res = await poemService.takeUserPoems(token);
+
+    if (res.error) {
+      return thunkAPI.rejectWithValue(res.error[0]);
+    }
+
+    return res.data;
+  }
+);
+
 export const poemSlice = createSlice({
   name: "poem",
   initialState,
