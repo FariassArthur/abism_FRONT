@@ -88,13 +88,7 @@ const UserAccount = () => {
                 <section className={styles.cardList}>
                   {userPoems &&
                     userPoems.map((poemItem) => (
-                      <div className="card">
-                        <Card
-                          create={false}
-                          key={poemItem.id}
-                          data={poemItem}
-                        />
-                      </div>
+                      <Card create={false} key={poemItem.id} data={poemItem} />
                     ))}
                 </section>
               </section>

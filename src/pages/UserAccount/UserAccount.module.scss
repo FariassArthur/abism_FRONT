@@ -29,24 +29,22 @@
       }
     }
 
-    .cardList {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-
-      .card {
-        width: 3rem;
-        height: 5rem;
-      }
-    }
     
     .cards {
       display: flex;
-      align-items: center;
-      padding: .2rem;
-
+      align-items: flex-start;
+      padding: 0.5rem;
+      
       gap: 1rem;
+
+      .cardList {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+  
+        gap: 2rem;
+      }
 
       .card {
         margin-left: 2%;

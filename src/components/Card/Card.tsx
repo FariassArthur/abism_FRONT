@@ -26,12 +26,12 @@ const Card = (props: Props) => {
         <FcLike />
       </i>
 
-      <section>
+      <section className={styles.info}>
         <h3>{props.data && props.data.title}</h3>
         <h4>by: Pedro</h4>
       </section>
 
-      <p>{props.data && props.data.content}</p>
+      <p className={styles.textCard}>{props.data && props.data.content}</p>
 
       <h4>
         <Link to="">Seguir Lendo</Link>
