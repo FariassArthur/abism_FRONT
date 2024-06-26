@@ -14,7 +14,7 @@ const Home = () => {
 
       <Title />
       <Info />
-      <CardsContainner />
+      {/* <CardsContainner /> */}
 
       <footer>&#169;2024 - fariassarthur | all rights reserved</footer>
     </div>

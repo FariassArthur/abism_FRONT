@@ -21,18 +21,39 @@ import { RootState } from "../../store";
 
 const ShowPoem = () => {
   const { id } = useParams();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
   const [owner, setOwner] = useState<boolean>(false);
 
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const resizeTextarea = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"; // Reset height to calculate scroll height correctly
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      resizeTextarea();
+      textareaRef.current.addEventListener("input", resizeTextarea);
+    }
+
+    return () => {
+      if (textareaRef.current) {
+        textareaRef.current.removeEventListener("input", resizeTextarea);
+      }
+    };
+  }, [textareaRef]);
 
   useEffect(() => {
     if (id) {
       dispatch(takeById(id));
     }
-  }, []);
+  }, [dispatch]);
 
   const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
 
@@ -77,6 +98,7 @@ const ShowPoem = () => {
           <div className={styles.containnerForm}>
             <textarea
               name="content"
+              ref={textareaRef}
               required
               disabled={!owner}
               value={content || ""}

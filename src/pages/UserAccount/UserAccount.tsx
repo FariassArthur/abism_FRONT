@@ -50,7 +50,7 @@ const UserAccount = () => {
 
   useEffect(() => {
     dispatch(takeUserPoemsSlice());
-  }, []);
+  }, [dispatch]);
 
   const { userPoems } = useSelector((state: RootState) => state.poem);
   console.log(userPoems);
