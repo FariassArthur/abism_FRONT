@@ -75,11 +75,30 @@ const takeUserPoems = async (token: any) => {
   }
 };
 
+const editPoemService = async (data: any, token: any) => {
+  if (!token) {
+    throw new Error("Token not found in localStorage");
+  }
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    await axios.post(`${api}/poems/update/${data.id}`, data, config);
+  } catch (error) {
+    return { "Erro no serviço de edição dos poemas": error };
+  }
+};
+
 const poemService = {
   takePoems,
   createPoem,
   takePoemById,
   takeUserPoems,
+  editPoemService,
 };
 
 export default poemService;

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import poemService from "../services/poemService";
 import { RootState } from "../store";
+import { Root } from "react-dom/client";
 
 interface Poem {
   id: string;
@@ -75,6 +76,23 @@ export const takeUserPoemsSlice = createAsyncThunk(
     return res.data;
   }
 );
+
+export const editPoemSlice = createAsyncThunk(
+  "poem/editPoem",
+  async (data: any, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const token: any = state.auth.token;
+
+    if (!token) {
+      // Handle missing token (throw error, dispatch separate action, etc.)
+      console.error("Token not found in Redux state");
+      return; // Or throw an error with a specific message
+    }
+
+    await poemService.editPoemService(data, token);
+  }
+)
+
 
 export const poemSlice = createSlice({
   name: "poem",
