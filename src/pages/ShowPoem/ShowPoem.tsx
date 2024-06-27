@@ -18,6 +18,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { takeById } from "../../slices/poemSlice";
 import { RootState } from "../../store";
+import { editPoemSlice } from "../../slices/poemSlice";
+
+interface Poem {
+  id: string;
+  title: string;
+  content: string;
+}
+
+interface poemEdit {
+  poem: Poem;
+  id: string;
+}
 
 const ShowPoem = () => {
   const { id } = useParams();
@@ -80,9 +92,21 @@ const ShowPoem = () => {
     };
   }, [content]); // Run effect when content changes
 
-  const handleEdit = () => {
-    
-  }
+  const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = {
+      id,
+      title,
+      content,
+    };
+
+    try {
+      await dispatch(editPoemSlice(data));
+    } catch (error) {
+      return { "Erro ao atualizar poema:": error };
+    }
+  };
 
   return (
     <div id={styles.showPoem}>
