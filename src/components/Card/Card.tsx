@@ -16,15 +16,15 @@ interface Props {
 }
 
 const Card = (props: Props) => {
-  const [countLikes, setCountLikes] = useState<number>(3);
+  /* const [countLikes, setCountLikes] = useState<number>(3); */
 
   return (
     <div id={styles.card}>
-      <i className={styles.likeIcon}>
+      {/* <i className={styles.likeIcon}>
         {" "}
         <span>{countLikes}</span>
         <FcLike />
-      </i>
+      </i> */}
 
       <section className={styles.info}>
         <h3>{props.data && props.data.title}</h3>

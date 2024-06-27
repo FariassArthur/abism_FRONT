@@ -5,7 +5,7 @@ import styles from "./ShowPoem.module.scss";
 import image from "../../assets/images/headerimage.png";
 
 //icons
-import { IoIosArrowDropright } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
 
 // component
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
@@ -21,18 +21,38 @@ import { RootState } from "../../store";
 
 const ShowPoem = () => {
   const { id } = useParams();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
   const [owner, setOwner] = useState<boolean>(false);
 
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const checkOwner = (userId: string) => {
+    const userIdLocal = localStorage.getItem("id");
+
+    if (userId == userIdLocal) {
+      setOwner(true);
+      console.log("deu certo");
+    } else {
+      setOwner(false);
+      console.log("não é o dono");
+    }
+  };
+
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const resizeTextarea = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"; // Reset height to calculate scroll height correctly
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
 
   useEffect(() => {
     if (id) {
       dispatch(takeById(id));
     }
-  }, []);
+  }, [dispatch, id]);
 
   const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
 
@@ -41,9 +61,28 @@ const ShowPoem = () => {
       setTitle(poem.title);
       setContent(poem.content);
 
-      console.log(poem);
+      checkOwner(poem.userid); // Certifique-se de que o poema tem uma propriedade userId ou algo similar
     }
   }, [poem]);
+
+  useEffect(() => {
+    resizeTextarea(); // Initial resize
+
+    const handleResize = () => resizeTextarea();
+    if (textareaRef.current) {
+      textareaRef.current.addEventListener("input", handleResize);
+    }
+
+    return () => {
+      if (textareaRef.current) {
+        textareaRef.current.removeEventListener("input", handleResize);
+      }
+    };
+  }, [content]); // Run effect when content changes
+
+  const handleEdit = () => {
+    
+  }
 
   return (
     <div id={styles.showPoem}>
@@ -51,7 +90,7 @@ const ShowPoem = () => {
       <div className={styles.container}>
         <BodyHeader searchAssets={false} />
 
-        <form>
+        <form onSubmit={handleEdit}>
           <section className={styles.infoPoem}>
             <div>
               <input
@@ -69,7 +108,7 @@ const ShowPoem = () => {
 
             {owner && (
               <button className={styles.btnSubmit} type="submit">
-                <IoIosArrowDropright size={20} className={styles.iconArrow} />
+                <MdEdit size={20} className={styles.iconArrow} />
               </button>
             )}
           </section>
@@ -77,6 +116,7 @@ const ShowPoem = () => {
           <div className={styles.containnerForm}>
             <textarea
               name="content"
+              ref={textareaRef}
               required
               disabled={!owner}
               value={content || ""}

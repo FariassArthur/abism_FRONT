@@ -13,7 +13,7 @@ const register = async (data: any) => {
     const responseData = res.data;
 
     if (responseData.id_user) {
-      localStorage.setItem("id", JSON.stringify(responseData.u));
+      localStorage.setItem("id", JSON.stringify(responseData.id));
       localStorage.setItem("token", JSON.stringify(responseData.token));
     }
 

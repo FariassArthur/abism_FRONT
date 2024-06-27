@@ -11,13 +11,10 @@ import Card from "../../components/Card/Card";
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
 // icons
-import { FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt, FaPlus } from "react-icons/fa";
 
 // router
 import { Link } from "react-router-dom";
-
-//icons
-import { FaPlus } from "react-icons/fa";
 
 // redux
 import { ThunkDispatch } from "@reduxjs/toolkit";
@@ -32,33 +29,39 @@ const UserAccount = () => {
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  useEffect(() => {
-    dispatch(profile());
-  }, [dispatch]);
-
+  // Obtém o estado do usuário e poemas do Redux
   const { user, loading, error } = useSelector(
     (state: RootState) => state.user
   );
+  const { userPoems } = useSelector((state: RootState) => state.poem);
 
+  // Efeito para buscar o perfil do usuário e os poemas do usuário
   useEffect(() => {
-    if (user && user) {
-      console.log(user);
+    if (userPoems)
+      if (!user) {
+        // Verifica se o usuário já foi carregado antes de fazer a requisição
+        dispatch(profile());
+      }
+
+    // Verifica se os poemas do usuário já foram carregados antes de fazer a requisição
+    if (userPoems && !userPoems.length) {
+      dispatch(takeUserPoemsSlice());
+    }
+  }, [dispatch, user, userPoems]);
+
+  // Efeito para atualizar os estados locais de email e nome quando o usuário é carregado
+  useEffect(() => {
+    if (user) {
       setEmail(user.email);
       setName(user.name);
     }
   }, [user]);
 
-  useEffect(() => {
-    dispatch(takeUserPoemsSlice());
-  }, []);
-
-  const { userPoems } = useSelector((state: RootState) => state.poem);
-  console.log(userPoems);
-
   return (
     <>
       {error && <h1>Error: {error}</h1>}
-      {user ? (
+      {loading && <h1>Loading...</h1>}
+      {user && (
         <div id={styles.userAccount}>
           <img src={image} alt="" />
           <div className={styles.containner}>
@@ -95,37 +98,9 @@ const UserAccount = () => {
             </>
           </div>
         </div>
-      ) : (
-        loading && <h1>Loading...</h1>
       )}
     </>
   );
 };
 
 export default UserAccount;
-
-/* 
-<div id={styles.userAccount}>
-            <img src={image} alt="" />
-            <div className={styles.containner}>
-              <>
-                <BodyHeader />
-                <section className={styles.infoUser}>
-                  <div>
-                    <h1>{user.name}</h1>
-                    <p>{user.email}</p>
-                  </div>
-                  <aside>
-                    <Link to={"/update"}>
-                      <FaPencilAlt />
-                    </Link>
-                  </aside>
-                </section>
-
-                <section className={styles.cards}>
-                  <Card />
-                </section>
-              </>
-            </div>
-          </div>
- */

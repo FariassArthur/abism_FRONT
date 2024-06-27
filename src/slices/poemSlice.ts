@@ -6,7 +6,7 @@ interface Poem {
   id: string;
   title: string;
   content: string;
-  user_id: string;
+  userid: string;
 }
 
 interface PoemState {
@@ -21,7 +21,7 @@ interface PoemState {
 const initialState: PoemState = {
   poem: [],
   poemUnique: null,
-  userPoems: null,
+  userPoems: [],
   error: false,
   success: false,
   loading: false,
