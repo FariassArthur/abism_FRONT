@@ -105,8 +105,6 @@ const Account = (props: Props) => {
 
     setPassword("");
     setConfirmPass("");
-
-    takeProfileForEdit(user);
   };
 
   useEffect(() => {
