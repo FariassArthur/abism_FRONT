@@ -10,8 +10,9 @@ import { Link } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { register, login, reset } from "../../slices/authSlice";
-import { update } from "../../slices/userSlice";
+import { update, profile } from "../../slices/userSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
 //icons
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -27,11 +28,25 @@ type Props = {
 const Account = (props: Props) => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const { loading, error } = useSelector((state: any) => state.auth);
+  const { user } = useSelector((state: RootState) => state.user);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  const takeProfileForEdit = async (User: any) => {
+    if (!User) {
+      await dispatch(profile());
+    }
+
+    setName(User.name);
+    setEmail(User.email);
+  };
+
+  useEffect(() => {
+    takeProfileForEdit(user);
+  }, [user]);
 
   const handleCreateAccount = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,6 +102,11 @@ const Account = (props: Props) => {
         console.error("Erro ao atualizar:", error);
       }
     }
+
+    setPassword("");
+    setConfirmPass("");
+
+    takeProfileForEdit(user);
   };
 
   useEffect(() => {
