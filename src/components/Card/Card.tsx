@@ -34,7 +34,7 @@ const Card = (props: Props) => {
       <p className={styles.textCard}>{props.data && props.data.content}</p>
 
       <h4>
-        <Link to="">Seguir Lendo</Link>
+        <Link to={`/poem/${props.data.id}`}>Seguir Lendo</Link>
       </h4>
     </div>
   );
