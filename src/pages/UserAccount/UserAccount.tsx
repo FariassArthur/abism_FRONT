@@ -60,7 +60,7 @@ const UserAccount = () => {
   return (
     <>
       {error && <h1>Error: {error}</h1>}
-      {loading && <h1>Loading...</h1>}
+      {loading && <h1 className={styles.loading}>Loading...</h1>}
       {user && (
         <div id={styles.userAccount}>
           <img src={image} alt="" />
