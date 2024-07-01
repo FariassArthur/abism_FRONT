@@ -44,9 +44,20 @@ const update = async (data: any, token: string) => {
   }
 };
 
+const takeAllUsers = async () => {
+  try {
+    const res = await axios.get(`${api}/users/all`);
+
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const userService = {
   profile,
   update,
+  takeAllUsers,
 };
 
 export default userService;
