@@ -10,19 +10,31 @@ interface User {
 
 interface UserState {
   user: User | null; // Aqui, 'User' é apenas um tipo
+  users: User[] | null;
   loading: boolean;
-  error: string | boolean;
+  error: any;
   success: boolean;
   message: string | null;
 }
 
 const initialState: UserState = {
   user: null, // Não use 'User' aqui como valor
+  users: null,
   error: false,
   success: false,
   loading: false,
   message: null,
 };
+
+export const takeUsers = createAsyncThunk("user/users", async (_, thunkAPI) => {
+  try {
+    const users = await userService.takeAllUsers();
+
+    return users.data;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 //Get user details
 export const profile = createAsyncThunk("user/profile", async (_, thunkAPI) => {
@@ -36,7 +48,7 @@ export const profile = createAsyncThunk("user/profile", async (_, thunkAPI) => {
 
   try {
     const data = await userService.profile(token);
-    return data.user; 
+    return data.user;
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -94,6 +106,21 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = typeof action.payload === "string" && action.payload;
         state.user = null;
+      })
+      .addCase(takeUsers.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(takeUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.error = false;
+        state.users = action.payload;
+      })
+      .addCase(takeUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.users = null;
       });
   },
 });
