@@ -42,8 +42,6 @@ const Header = (props: Props) => {
     }
   }, [token]);
 
-
-
   useEffect(() => {
     switch (location.pathname) {
       case "/":
@@ -117,7 +115,9 @@ const Header = (props: Props) => {
     >
       {props.toggle ? (
         <>
-          <section className={styles.navlinks}>{navLinks}</section>
+          <section id={styles.sectionLinks}>
+            <div className={styles.navlinks}>{navLinks}</div>
+          </section>
 
           <section className={styles.iconsSection}>
             <div className={styles.icon}>
@@ -152,18 +152,18 @@ const Header = (props: Props) => {
         </>
       ) : (
         <>
-          <section className={styles.navLinks}>{navLinks}</section>
+          <section className={styles.navlinks}>{navLinks}</section>
 
           <section className={styles.navIcons}>
             <div className={styles.icon}>
               {!token && (
                 <Link to="/signin">
-                  <FaUserPlus />
+                  <FaUserPlus size={15} />
                 </Link>
               )}
               {token && (
                 <Link to={"/update"}>
-                  <FaUserCog />
+                  <FaUserCog size={15} />
                 </Link>
               )}
             </div>
@@ -171,16 +171,16 @@ const Header = (props: Props) => {
             <div className={styles.icon}>
               {/* <FaSun /> */}
 
-              <FaMoon />
+              <FaMoon size={15}/>
             </div>
 
             <div className={styles.icon}>
-              <GrLanguage />
+              <GrLanguage size={15} />
             </div>
 
             {token && (
-              <div onClick={handleLogout} className={styles.iconLogout}>
-                <IoLogOutSharp />
+              <div onClick={handleLogout} className={styles.icon}>
+                <IoLogOutSharp size={15} />
               </div>
             )}
           </section>
