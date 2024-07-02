@@ -116,13 +116,7 @@ const Header = (props: Props) => {
 
   return (
     <div
-      className={
-        props.toggle
-          ? styles.toggleContainner
-          : props.sticky
-          ? `${styles.containner} ${styles.sticky}`
-          : styles.containner
-      }
+      className={Theme === "dark" ? styles.containnerDark : styles.containner }
     >
       {props.toggle ? (
         <>
