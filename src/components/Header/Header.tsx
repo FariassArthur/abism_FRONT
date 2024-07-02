@@ -16,6 +16,11 @@ import { FaUserPlus, FaUserCog, FaMoon } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoLogOutSharp } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
+import { BsSun } from "react-icons/bs";
+
+//redux
+import { RootState } from "../../store";
+import { toggleTheme } from "../../slices/extraSlice";
 
 interface Props {
   config?: boolean;
@@ -32,6 +37,7 @@ const Header = (props: Props) => {
   const location = useLocation();
 
   const { token } = useSelector((state: any) => state.auth);
+  const { Theme } = useSelector((state: RootState) => state.extra);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
@@ -103,6 +109,11 @@ const Header = (props: Props) => {
     await dispatch(logout());
   };
 
+  const handleChangeTheme = () => {
+    dispatch(toggleTheme());
+    console.log("deu certo")
+  };
+
   return (
     <div
       className={
@@ -133,10 +144,8 @@ const Header = (props: Props) => {
               )}
             </div>
 
-            <div className={styles.icon}>
-              {/* <FaSun /> */}
-
-              <FaMoon />
+            <div className={styles.icon} onClick={() => handleChangeTheme()}>
+              {Theme === "light" ? <FaMoon /> : <BsSun />}
             </div>
 
             <div className={styles.icon}>
@@ -171,7 +180,7 @@ const Header = (props: Props) => {
             <div className={styles.icon}>
               {/* <FaSun /> */}
 
-              <FaMoon size={15}/>
+              <FaMoon size={15} />
             </div>
 
             <div className={styles.icon}>
