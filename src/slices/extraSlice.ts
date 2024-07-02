@@ -1,25 +1,24 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-//service
 
-const theme = localStorage.getItem("theme");
+const storedTheme = localStorage.getItem("theme") || "light"; // Definindo "light" como padrão
 
 const initialState = {
-  Theme: theme,
+  Theme: storedTheme as "light" | "dark", // Garantindo que seja do tipo correto
 };
 
 export const toggleTheme = createAsyncThunk<
   "light" | "dark",
   void,
-  { state: { theme: { theme: "light" | "dark" } } }
+  { state: { extra: { Theme: "light" | "dark" } } }
 >("theme/toggleTheme", async (_, thunkAPI) => {
   const state = thunkAPI.getState();
-  const newTheme = state.theme.theme === "light" ? "dark" : "light";
+  const newTheme = state.extra.Theme === "light" ? "dark" : "light";
   localStorage.setItem("theme", newTheme);
   return newTheme;
 });
 
 const extraSlice = createSlice({
-  name: "theme",
+  name: "extra",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

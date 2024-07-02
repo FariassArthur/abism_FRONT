@@ -15,7 +15,6 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { FaUserPlus, FaUserCog, FaMoon } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoLogOutSharp } from "react-icons/io5";
-import { FaHome } from "react-icons/fa";
 import { BsSun } from "react-icons/bs";
 
 //redux
@@ -111,7 +110,8 @@ const Header = (props: Props) => {
 
   const handleChangeTheme = () => {
     dispatch(toggleTheme());
-    console.log("deu certo")
+    console.log("deu certo");
+    console.log(Theme);
   };
 
   return (
@@ -144,9 +144,13 @@ const Header = (props: Props) => {
               )}
             </div>
 
-            <div className={styles.icon} onClick={() => handleChangeTheme()}>
-              {Theme === "light" ? <FaMoon /> : <BsSun />}
-            </div>
+            <i className={styles.icon} onClick={handleChangeTheme}>
+              {Theme === "light" ? (
+                <FaMoon onClick={handleChangeTheme} />
+              ) : (
+                <BsSun />
+              )}
+            </i>
 
             <div className={styles.icon}>
               <GrLanguage />
@@ -177,10 +181,8 @@ const Header = (props: Props) => {
               )}
             </div>
 
-            <div className={styles.icon}>
-              {/* <FaSun /> */}
-
-              <FaMoon size={15} />
+            <div className={styles.icon} onClick={handleChangeTheme}>
+              {Theme === "dark" ? <BsSun size={15} /> : <FaMoon size={15} />}
             </div>
 
             <div className={styles.icon}>
