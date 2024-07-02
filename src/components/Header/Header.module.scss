@@ -15,11 +15,91 @@
   padding: 1rem;
   z-index: 4;
 
-  box-shadow: 5px 5px 5px 0 #000;
+  background-color: $background-color-light;
+  box-shadow: 5px 5px 5px 0 $shadow-color-light;
 
   .underline {
-    color: #fff;
-    background-color: #000;
+    color: $color-light;
+    background-color: $background-color-light;
+    text-decoration: underline;
+  }
+
+
+  section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  section:hover {
+    text-decoration: none;
+  }
+
+  .navlinks {
+    display: flex;
+    gap: 1rem;
+
+    .underline {
+      color: $color-light;
+      background-color: $background-color-light;
+      text-decoration: underline;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-light;
+
+      transition: all 0.6s ease-in-out;
+
+      background-color: $background-color-light;
+      padding: 0.1rem;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      color: $color-light;
+      background-color: $background-color-light;
+    }
+  }
+
+  .navIcons {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      padding: 0.3rem;
+      max-height: 5px;
+
+      a {
+        display: flex;
+        align-items: end;
+      }
+    }
+  }
+}
+
+.containnerDark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+
+  top: 0.3rem;
+  left: 0rem;
+  padding: 1rem;
+  z-index: 4;
+
+  background-color: $background-color-dark;
+  box-shadow: 5px 5px 5px 0 $shadow-color-dark;
+
+  .underline {
+    color: $color-dark;
+    background-color: $background-color-dark;
     text-decoration: underline;
   }
 
@@ -38,25 +118,25 @@
     gap: 1rem;
 
     .underline {
-      color: #fff;
-      background-color: #000;
+      color: $color-dark;
+      background-color: $background-color-dark;
       text-decoration: underline;
     }
 
     a {
       text-decoration: none;
-      color: #000;
+      color: $color-dark;
 
       transition: all 0.6s ease-in-out;
 
-      background-color: #fff;
+      background-color: $background-color-dark;
       padding: 0.1rem;
       border-radius: 5px;
     }
 
     a:hover {
-      color: #fff;
-      background-color: #000;
+      color: $color-dark;
+      background-color: $background-color-dark;
     }
   }
 
@@ -64,24 +144,25 @@
     display: flex;
     align-items: center;
 
-
     .icon {
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
 
+      color: $color-dark;
       padding: 0.3rem;
       max-height: 5px;
 
       a {
         display: flex;
         align-items: end;
+        color: $color-dark;
       }
     }
-
   }
 }
+
 
 .toggleContainner {
   top: 50%;

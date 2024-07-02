@@ -9,3 +9,13 @@
     justify-content: center;
   }
 }
+
+#homeDark {
+  background-color: $background-color-dark;
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
