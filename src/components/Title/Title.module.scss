@@ -1,32 +1,49 @@
+@import "../../App.scss";
+
 #title {
-    .containner {
-        
-        box-sizing: border-box;
-        width: 100%;
+  .containner {
+    box-sizing: border-box;
+    width: 100%;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        border-radius: 10px;
-        margin-bottom: 10rem;
+    border-radius: 10px;
+    margin-bottom: 10rem;
 
+    .text {
+      font-size: 5rem;
+      position: absolute;
 
-        .text {
-            font-size: 5rem;
-            position: absolute;
-
-            .last {
-                margin-left: 10rem;
-            }
-        }
-
-        img {
-            border: 1px solid;
-            border-radius: 10px;
-
-            box-shadow: 5px 10px 10px 3px #000;
-        }
+      .last {
+        margin-left: 10rem;
+      }
     }
+
+    .textDark {
+      font-size: 5rem;
+      position: absolute;
+
+      color: $background-color-dark;
+
+      .last {
+        margin-left: 10rem;
+      }
+    }
+
+    img {
+      border: 1px solid;
+      border-radius: 10px;
+
+      box-shadow: 5px 10px 10px 3px $shadow-color-light;
+    }
+
+    .imgDark {
+      border: 1px solid;
+      border-radius: 10px;
+
+      box-shadow: 5px 10px 10px 3px $shadow-color-dark;
+    }
+  }
 }

@@ -1,16 +1,20 @@
+/* https://colorhunt.co/palette/040d12183d3d5c837493b1a6 */
+
 $title_light: #D40505;
 $link_light: #000;
 $link_light_hover: #333;
 $background-color-light: #fff;
 $color-light: #000;
 $shadow-color-light: #000;
+$border-light: #000;
 
-$title_dark: #D40505;
-$link_dark: #fff;
-$link_dark_hover: #bbb;
-$background-color-dark: #000;
-$color-dark: #fff;
-$shadow-color-dark: #fff;
+$title_dark: #183d3d;
+$link_dark: #5C8374;
+$link_dark_hover: #93B1A6;
+$background-color-dark: #040D12;
+$color-dark: #93B1A6;
+$shadow-color-dark: #183D3D;
+$border-dark: #bbb;
 
 * {
     padding: 0;
@@ -20,9 +24,7 @@ $shadow-color-dark: #fff;
 
 #app {
     width: 100%;
-
     box-sizing: border-box;
-    padding: 0.2rem;
 }
 
 img {

@@ -4,9 +4,12 @@ import styles from "./Info.module.scss";
 //image
 import image from "../../assets/images/asidehome.jpg";
 
-const Info = () => {
+//types
+import { ThemeType } from "../../types/themeTypes";
+
+const Info = (props: ThemeType) => {
   return (
-    <div id={styles.info}>
+    <div id={props.theme === "dark" ? styles.infoDark : styles.info}>
       <h1>Informações</h1>
 
       <section>

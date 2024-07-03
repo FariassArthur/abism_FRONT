@@ -1,3 +1,5 @@
+@import '../../App.scss';
+
 #info {
     display: flex;
     align-items: center;
@@ -8,6 +10,32 @@
 
     h1 {
         margin-bottom: 3rem;
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+
+        img {
+            border-radius: 50px;
+            max-width: 30%;
+            max-height: auto;
+        }
+    }
+}
+
+#infoDark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 0 8rem 0 8rem;
+    color: $color-dark;
+
+    h1 {
+        margin-bottom: 3rem;
+    
     }
 
     section {

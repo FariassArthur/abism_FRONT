@@ -29,11 +29,12 @@ const UserAccount = () => {
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  // Obtém o estado do usuário e poemas do Redux
+  // Select
   const { user, loading, error } = useSelector(
     (state: RootState) => state.user
   );
   const { userPoems } = useSelector((state: RootState) => state.poem);
+  const { Theme } = useSelector((state: RootState) => state.extra);
 
   // Efeito para buscar o perfil do usuário e os poemas do usuário
   useEffect(() => {
@@ -62,7 +63,9 @@ const UserAccount = () => {
       {error && <h1>Error: {error}</h1>}
       {loading && <h1 className={styles.loading}>Loading...</h1>}
       {user && (
-        <div id={styles.userAccount}>
+        <div
+          id={Theme === "dark" ? styles.userAccountDark : styles.userAccount}
+        >
           <img src={image} alt="" />
           <div className={styles.containner}>
             <>
