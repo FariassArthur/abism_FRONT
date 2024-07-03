@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 
 //styles
 import styles from "./Poems.module.scss";
+import headerImage from "../../assets/images/headerimage.png";
 
 //components
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
-import Header from "../../components/Header/Header";
+/* import Header from "../../components/Header/Header"; */
 import PoemModal from "../../components/PoemModal/PoemModal";
 
 //redux
@@ -29,7 +30,8 @@ const Poems = () => {
 
   const { poem } = useSelector((state: RootState) => state.poem);
   const { users } = useSelector((state: RootState) => state.user);
-  
+  const { Theme } = useSelector((state: RootState) => state.extra);
+
   // Criação do dicionário de usuários
   const usersDict = users?.reduce((acc: any, user: any) => {
     acc[user.id] = user.name;
@@ -37,9 +39,10 @@ const Poems = () => {
   }, {});
 
   return (
-    <div id={styles.poems}>
-      <Header toggle={false} sticky={false} auth={true} />
+    <div id={Theme === "dark" ? styles.poemsDark : styles.poems}>
+      {/*  <Header toggle={false} sticky={false} auth={true} /> */}
 
+      <img src={headerImage} alt="" />
       <section className={styles.content}>
         <BodyHeader searchAssets={true} />
         <div>

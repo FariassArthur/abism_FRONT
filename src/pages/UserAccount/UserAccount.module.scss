@@ -68,6 +68,7 @@
         padding: 2rem;
 
         border: 1px solid $border-light;
+        color: $link_light;
         border-radius: 5px;
         box-shadow: 5px 5px 10px 1px $shadow-color-light;
       }
@@ -146,8 +147,9 @@
         padding: 2rem;
 
         border: 1px solid $border-dark;
+        color: $link_dark;
         border-radius: 5px;
-        box-shadow: 5px 5px 10px 1px $shadow-color-dark;
+        box-shadow: 0px 0px 10px 5px $shadow-color-dark;
       }
 
       .plusIcon:hover {
@@ -155,6 +157,7 @@
         cursor: pointer;
 
         border: 1px solid $border-dark;
+        color: $link_dark_hover;
         border-radius: 5px;
         box-shadow: 5px 5px 10px 1px $shadow-color-dark;
       }
