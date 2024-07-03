@@ -1,10 +1,10 @@
+@import "../../App.scss";
+
 .loading {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 1px solid;
-  
   width: 100%;
   height: 100vh;
 }
@@ -19,13 +19,13 @@
 
       padding: 1rem;
       margin-bottom: 1rem;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid $border-light;
 
       div {
         display: inline-block;
         box-sizing: border-box;
         padding-right: 2rem;
-        border-right: 1px solid;
+        border-right: 1px solid $border-light;
       }
 
       aside {
@@ -35,17 +35,16 @@
         cursor: pointer;
 
         a {
-          color: black;
+          color: $color-light;
         }
       }
     }
 
-    
     .cards {
       display: flex;
       align-items: flex-start;
       padding: 0.5rem;
-      
+
       gap: 1rem;
 
       .cardList {
@@ -53,7 +52,7 @@
         align-items: center;
         justify-content: flex-start;
         flex-wrap: wrap;
-  
+
         gap: 2rem;
       }
 
@@ -68,18 +67,96 @@
 
         padding: 2rem;
 
-        border: 1px solid #000;
+        border: 1px solid $border-light;
         border-radius: 5px;
-        box-shadow: 5px 5px 10px 1px #000;
+        box-shadow: 5px 5px 10px 1px $shadow-color-light;
       }
 
       .plusIcon:hover {
         transition: 0.3s ease-in-out;
         cursor: pointer;
 
-        border: 1px solid #bbb;
+        border: 1px solid $border-light;
         border-radius: 5px;
-        box-shadow: 5px 5px 10px 1px #bbb;
+        box-shadow: 5px 5px 10px 1px $shadow-color-light;
+      }
+    }
+  }
+}
+
+#userAccountDark {
+  background-color: $background-color-dark;
+
+  color: $color-dark;
+  .containner {
+    padding: 0.5rem;
+
+    .infoUser {
+      display: flex;
+      align-items: center;
+
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $border-dark;
+
+      div {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-right: 2rem;
+        border-right: 1px solid $border-dark;
+      }
+
+      aside {
+        padding-left: 2rem;
+        text-decoration: none;
+
+        cursor: pointer;
+
+        a {
+          color: $color-dark;
+        }
+      }
+    }
+
+    .cards {
+      display: flex;
+      align-items: flex-start;
+      padding: 0.5rem;
+
+      gap: 1rem;
+
+      .cardList {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        gap: 2rem;
+      }
+
+      .card {
+        margin-left: 2%;
+      }
+
+      .plusIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 2rem;
+
+        border: 1px solid $border-dark;
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px 1px $shadow-color-dark;
+      }
+
+      .plusIcon:hover {
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+
+        border: 1px solid $border-dark;
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px 1px $shadow-color-dark;
       }
     }
   }

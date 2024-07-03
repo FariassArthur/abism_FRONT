@@ -18,8 +18,8 @@ const Home = () => {
     <div id={Theme === "dark" ? styles.homeDark : styles.home}>
       <Header toggle={false} sticky={true} auth={true} />
 
-      <Title />
-      <Info />
+      <Title theme={Theme} />
+      <Info theme={Theme} />
       {/* <CardsContainner /> */}
 
       <footer>&#169;2024 - fariassarthur | all rights reserved</footer>
