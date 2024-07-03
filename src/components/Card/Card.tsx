@@ -31,6 +31,7 @@ const Card = (props: Props) => {
   };
 
   const { users } = useSelector((state: RootState) => state.user);
+  const { Theme } = useSelector((state: RootState) => state.extra);
 
   useEffect(() => {
     takeUsersFunc();
@@ -43,7 +44,7 @@ const Card = (props: Props) => {
   }, {});
 
   return (
-    <div id={styles.card}>
+    <div id={Theme === "dark" ? styles.cardDark : styles.card}>
       {/* <i className={styles.likeIcon}>
         {" "}
         <span>{countLikes}</span>
@@ -52,7 +53,7 @@ const Card = (props: Props) => {
 
       <section className={styles.info}>
         <h3>{props.data && props.data.title}</h3>
-        <h4>by: {usersDict[props.data.userid]}</h4>
+        {usersDict && <h4>by: {usersDict[props.data.userid]}</h4>}
       </section>
 
       <p className={styles.textCard}>{props.data && props.data.content}</p>

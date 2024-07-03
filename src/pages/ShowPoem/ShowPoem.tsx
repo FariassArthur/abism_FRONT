@@ -67,6 +67,7 @@ const ShowPoem = () => {
   }, [dispatch, id]);
 
   const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
+  const { Theme } = useSelector((state: RootState) => state.extra);
 
   useEffect(() => {
     if (poem) {
@@ -109,7 +110,7 @@ const ShowPoem = () => {
   };
 
   return (
-    <div id={styles.showPoem}>
+    <div id={Theme === "dark" ? styles.showPoemDark : styles.showPoem}>
       <img src={image} alt="" />
       <div className={styles.container}>
         <BodyHeader searchAssets={false} />

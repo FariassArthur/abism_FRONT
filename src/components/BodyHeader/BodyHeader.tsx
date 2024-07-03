@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 //redux
 import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 type Props = {
   searchAssets: boolean;
@@ -21,7 +22,8 @@ const BodyHeader = (props: Props) => {
   const [userLink, setUserLink] = useState("/account");
   const [onFilter, setOnFilter] = useState<boolean>(false);
 
-  const { token } = useSelector((state: any) => state.auth);
+  const { token } = useSelector((state: RootState) => state.auth);
+  const { Theme } = useSelector((state: RootState) => state.extra);
 
   useEffect(() => {
     if (token) {
@@ -32,7 +34,7 @@ const BodyHeader = (props: Props) => {
   }, [token]);
 
   return (
-    <div id={styles.bodyheader}>
+    <div id={Theme === "dark" ? styles.bodyheaderDark : styles.bodyheader}>
       <div className={styles.nav}>
         <p>
           <span className={styles.inicio}>

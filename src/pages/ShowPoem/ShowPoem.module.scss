@@ -1,76 +1,165 @@
+@import "../../App.scss";
+
 #showPoem {
-    .containner {
-      padding: 0.5rem;
-    }
-  
-    .infoPoem {
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid #bbb;
-  
-      box-sizing: border-box;
-  
+  .containner {
+    padding: 0.5rem;
+  }
+
+  .infoPoem {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $border-light;
+
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      gap: 0.5rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-  
-      div {
-        gap: 0.5rem;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-  
-      input[type="text"] {
-        font-size: xx-large;
-        color: red;
-  
-        outline: none;
-        text-decoration: none;
-      }
-  
-      .btnSubmit {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
-        border-radius: 100px;
-        width: 3rem;
-        height: 3rem;
-  
-        box-sizing: border-box;
-  
-        transition: 0.2s ease-in-out;
-  
-        &:hover {
-          cursor: pointer;
-  
-          background-color: #bbb;
-        }
-  
-        &:active {
-          width: 2rem;
-          height: 2rem;
-  
-          margin-right: 2rem;
-        }
-      }
+      justify-content: center;
+      flex-direction: column;
     }
-  
-    .containnerForm {
-      width: 100%;
-      height: auto;
+
+    input[type="text"] {
+      font-size: xx-large;
+      color: $title_light;
+
+      outline: none;
+      text-decoration: none;
+    }
+
+    .btnSubmit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 100px;
+      width: 3rem;
+      height: 3rem;
+
       box-sizing: border-box;
-  
-      textarea {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 2rem;
-        outline: none;
-  
-        resize: none;
-        text-decoration: none;
+
+      transition: 0.2s ease-in-out;
+      background-color: $link_light;
+
+      &:hover {
+        cursor: pointer;
+
+        background-color: $link_light_hover;
+      }
+
+      &:active {
+        width: 2rem;
+        height: 2rem;
+
+        margin-right: 2rem;
       }
     }
   }
+
+  .containnerForm {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 2rem;
+      outline: none;
+
+      resize: none;
+      text-decoration: none;
+    }
+  }
+}
+
+#showPoemDark {
+
+  background-color: $background-color-dark;
+  color: $color-dark;
   
+  .containner {
+    padding: 0.5rem;
+  }
+
+  .infoPoem {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $border-dark;
+
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      gap: 0.5rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    input[type="text"] {
+      font-size: xx-large;
+      color: $title_dark;
+
+      background-color: transparent;
+      outline: none;
+      text-decoration: none;
+    }
+
+    .btnSubmit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 100px;
+      width: 3rem;
+      height: 3rem;
+
+      box-sizing: border-box;
+
+      transition: 0.2s ease-in-out;
+      background-color: $link_dark;
+
+      &:hover {
+        cursor: pointer;
+
+        background-color: $link_dark_hover
+      }
+
+      &:active {
+        width: 2rem;
+        height: 2rem;
+
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  .containnerForm {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    background-color: $background-color-dark;
+    border: 5px solid #000;
+    height: 65vh;
+
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 2rem;
+      outline: none;
+      background-color: transparent;
+      color: $color-dark;
+
+      resize: none;
+      text-decoration: none;
+    }
+  }
+}

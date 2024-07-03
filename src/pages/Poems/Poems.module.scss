@@ -1,4 +1,20 @@
+@import "../../App.scss";
+
 #poems {
+  .content {
+    padding: 1rem 2rem 0 2rem;
+  }
+
+  .containnerPoem {
+    &:hover {
+      background-color: #000;
+    }
+  }
+}
+
+#poemsDark {
+  background-color: $background-color-dark;
+  
   .content {
     padding: 1rem 2rem 0 2rem;
   }
