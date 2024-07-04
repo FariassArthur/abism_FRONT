@@ -16,23 +16,11 @@ import { useParams } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { takeById } from "../../slices/poemSlice";
+import { takeById, editPoemSlice } from "../../slices/poemSlice";
 import { RootState } from "../../store";
-import { editPoemSlice } from "../../slices/poemSlice";
-
-interface Poem {
-  id: string;
-  title: string;
-  content: string;
-}
-
-interface poemEdit {
-  poem: Poem;
-  id: string;
-}
 
 const ShowPoem = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const [title, setTitle] = useState<string | null>(null);
@@ -41,8 +29,7 @@ const ShowPoem = () => {
 
   const checkOwner = (userId: string) => {
     const userIdLocal = localStorage.getItem("id");
-
-    if (userId == userIdLocal) {
+    if (userId === userIdLocal) {
       setOwner(true);
       console.log("deu certo");
     } else {
@@ -68,12 +55,12 @@ const ShowPoem = () => {
 
   const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
   const { Theme } = useSelector((state: RootState) => state.extra);
+  console.log(poem);
 
   useEffect(() => {
     if (poem) {
       setTitle(poem.title);
       setContent(poem.content);
-
       checkOwner(poem.userid); // Certifique-se de que o poema tem uma propriedade userId ou algo similar
     }
   }, [poem]);
@@ -105,7 +92,7 @@ const ShowPoem = () => {
     try {
       await dispatch(editPoemSlice(data));
     } catch (error) {
-      return { "Erro ao atualizar poema:": error };
+      console.error("Erro ao atualizar poema:", error);
     }
   };
 
