@@ -1,4 +1,4 @@
-import { api, requestConfig } from "../utils/config";
+import { api } from "../utils/config";
 
 //axios
 import axios, { AxiosResponse } from "axios";
@@ -18,7 +18,7 @@ const profile = async (token: any) => {
   }
 };
 
-const update = async (data: any, token: string) => {
+const update = async (data: any, token: any) => {
   if (!token) {
     throw new Error("Token not found in localStorage");
   }

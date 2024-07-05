@@ -11,7 +11,11 @@
   transition: .1s ease-in-out;
 
   &:hover {
-    background-color: #bbb;
+    background-color: $link_light_hover;
+
+    a {
+      color: $color-light;
+    }
   }
 
   &:active {

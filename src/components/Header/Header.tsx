@@ -31,21 +31,23 @@ interface Props {
 }
 
 const Header = (props: Props) => {
-  const [userLink, setUserLink] = useState("/account");
+  const [userLink, setUserLink] = useState("/signin");
   const [navLinks, setNavLinks] = useState<JSX.Element | null>(null);
   const location = useLocation();
 
-  const { token } = useSelector((state: any) => state.auth);
+  const { token } = useSelector((state: RootState) => state.auth);
   const { Theme } = useSelector((state: RootState) => state.extra);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
-    if (token) {
-      setUserLink("/account");
-    } else {
-      setUserLink("/login");
-    }
+    setUserLink(token ? "/account" : "/login");
   }, [token]);
+  
+  const handleLogout = async () => {
+    await dispatch(logout());
+    setUserLink("/login");
+  };
+  
 
   useEffect(() => {
     switch (location.pathname) {
@@ -104,10 +106,6 @@ const Header = (props: Props) => {
     }
   }, [location.pathname]);
 
-  const handleLogout = async () => {
-    await dispatch(logout());
-  };
-
   const handleChangeTheme = () => {
     dispatch(toggleTheme());
     console.log("deu certo");
@@ -116,7 +114,7 @@ const Header = (props: Props) => {
 
   return (
     <div
-      className={Theme === "dark" ? styles.containnerDark : styles.containner }
+      className={Theme === "dark" ? styles.containnerDark : styles.containner}
     >
       {props.toggle ? (
         <>

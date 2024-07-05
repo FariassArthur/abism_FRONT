@@ -1,4 +1,4 @@
-import { api, requestConfig } from "../utils/config";
+import { api } from "../utils/config";
 import axios from "axios";
 
 const takePoems = async (token: any) => {
@@ -36,7 +36,7 @@ const createPoem = async (data: any, token: any) => {
 };
 
 const takePoemById = async (id: string) => {
-/*   if (!token) {
+  /*   if (!token) {
     throw new Error("Token not found in localStorage");
   }
 

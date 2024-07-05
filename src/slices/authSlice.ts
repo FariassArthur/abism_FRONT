@@ -2,13 +2,23 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../services/authService";
 
 const tokenString = localStorage.getItem("token");
+const idString = localStorage.getItem("id");
 
-const token = tokenString && JSON.parse(tokenString);
+const token = tokenString ? JSON.parse(tokenString) : null;
+const userId = idString ? JSON.parse(idString) : null;
 
-const initialState = {
-  user: null,
-  token: token ? token : null,
-  error: false as string | boolean,
+interface AuthState {
+  userId: string | null;
+  token: string | null;
+  error: any;
+  success: boolean;
+  loading: boolean;
+}
+
+const initialState: AuthState = {
+  userId: userId,
+  token: token,
+  error: false,
   success: false,
   loading: false,
 };
@@ -26,12 +36,10 @@ export const register = createAsyncThunk(
   }
 );
 
-//Logout an user
 export const logout = createAsyncThunk("auth/logout", async () => {
-  await authService.logout();
+  authService.logout();
 });
 
-//Sign in an user
 export const login = createAsyncThunk(
   "auth/login",
   async (user: any, thunkAPI) => {
@@ -65,19 +73,19 @@ export const authSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.user = action.payload;
+        state.userId = action.payload.id;
         state.token = action.payload.token;
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
-        state.error = typeof action.payload === "string" && action.payload;
-        state.user = null;
+        state.error = action.payload;
+        state.userId = null;
       })
-      .addCase(logout.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.user = null;
+        state.userId = null;
         state.token = null;
       })
       .addCase(login.pending, (state) => {
@@ -88,12 +96,12 @@ export const authSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = false;
-        state.user = action.payload;
+        state.userId = action.payload.id;
         state.token = action.payload.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = typeof action.payload === "string" && action.payload;
+        state.error = action.payload;
       });
   },
 });
