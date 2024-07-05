@@ -27,7 +27,9 @@ type Props = {
 
 const Account = (props: Props) => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const { loading, error } = useSelector((state: any) => state.auth);
+  const { loading, error } = useSelector(
+    (state: RootState) => state.auth
+  );
   const { user } = useSelector((state: RootState) => state.user);
 
   const [name, setName] = useState("");
@@ -38,15 +40,17 @@ const Account = (props: Props) => {
   const takeProfileForEdit = async (User: any) => {
     if (!User) {
       await dispatch(profile());
+    } else {
+      setName(User.name);
+      setEmail(User.email);
     }
-
-    setName(User.name);
-    setEmail(User.email);
   };
 
   useEffect(() => {
-    takeProfileForEdit(user);
-  }, [user]);
+    if (props.update) {
+      takeProfileForEdit(user);
+    }
+  }, [user, props.update]);
 
   const handleCreateAccount = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

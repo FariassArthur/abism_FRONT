@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import poemService from "../services/poemService";
 import { RootState } from "../store";
-import { Root } from "react-dom/client";
 
 interface Poem {
   id: string;
@@ -40,12 +39,8 @@ export const createPoem = createAsyncThunk(
 
 export const takeById = createAsyncThunk(
   "poems/takeById",
-  async (id: string, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const token = state.auth.token;
-
-    const data = await poemService.takePoemById(id, token);
-
+  async (id: string) => {
+    const data = await poemService.takePoemById(id);
     return data.data;
   }
 );
@@ -91,8 +86,7 @@ export const editPoemSlice = createAsyncThunk(
 
     await poemService.editPoemService(data, token);
   }
-)
-
+);
 
 export const poemSlice = createSlice({
   name: "poem",

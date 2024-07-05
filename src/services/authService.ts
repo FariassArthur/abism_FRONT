@@ -37,7 +37,7 @@ const login = async (data: any) => {
       data
     );
     const responseData = res.data;
-    console.log(responseData)
+    console.log("loginService")
 
     if (responseData.token) {
       localStorage.setItem("id", JSON.stringify(responseData.id));
