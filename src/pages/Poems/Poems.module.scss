@@ -3,6 +3,8 @@
 #poems {
   .content {
     padding: 1rem 2rem 0 2rem;
+    background-color: $background-color-light;
+    min-height: 90vh;
   }
 
   .containnerPoem {
@@ -17,6 +19,8 @@
   
   .content {
     padding: 1rem 2rem 0 2rem;
+    min-height: 90vh;
+    background-color: $background-color-dark;
   }
 
   .containnerPoem {

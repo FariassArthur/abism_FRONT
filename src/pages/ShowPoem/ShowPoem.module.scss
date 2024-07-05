@@ -64,10 +64,13 @@
     width: 100%;
     height: auto;
     box-sizing: border-box;
+    min-height: 65vh;
+
 
     textarea {
       box-sizing: border-box;
       width: 100%;
+      min-height: 90vh;
       padding: 2rem;
       outline: none;
 
@@ -78,10 +81,9 @@
 }
 
 #showPoemDark {
-
   background-color: $background-color-dark;
   color: $color-dark;
-  
+
   .containner {
     padding: 0.5rem;
   }
@@ -130,7 +132,7 @@
       &:hover {
         cursor: pointer;
 
-        background-color: $link_dark_hover
+        background-color: $link_dark_hover;
       }
 
       &:active {
@@ -147,8 +149,7 @@
     height: auto;
     box-sizing: border-box;
     background-color: $background-color-dark;
-    border: 5px solid #000;
-    height: 65vh;
+    min-height: 65vh;
 
     textarea {
       box-sizing: border-box;
