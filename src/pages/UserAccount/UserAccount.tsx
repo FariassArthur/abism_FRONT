@@ -43,12 +43,8 @@ const UserAccount = () => {
         // Verifica se o usuário já foi carregado antes de fazer a requisição
         dispatch(profile());
       }
-
-    // Verifica se os poemas do usuário já foram carregados antes de fazer a requisição
-    if (userPoems && !userPoems.length) {
-      dispatch(takeUserPoemsSlice());
-    }
-  }, [dispatch, user, userPoems]);
+    dispatch(takeUserPoemsSlice());
+  }, []);
 
   // Efeito para atualizar os estados locais de email e nome quando o usuário é carregado
   useEffect(() => {
@@ -61,7 +57,11 @@ const UserAccount = () => {
   return (
     <>
       {error && <h1>Error: {error}</h1>}
-      {loading && <h1 className={styles.loading}>Loading...</h1>}
+      {loading && (
+        <h1 className={Theme === "dark" ? styles.loadingDark : styles.loading}>
+          Loading...
+        </h1>
+      )}
       {user && (
         <div
           id={Theme === "dark" ? styles.userAccountDark : styles.userAccount}

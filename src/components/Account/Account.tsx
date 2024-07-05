@@ -27,10 +27,9 @@ type Props = {
 
 const Account = (props: Props) => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const { loading, error } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { loading, error } = useSelector((state: RootState) => state.auth);
   const { user } = useSelector((state: RootState) => state.user);
+  const { Theme } = useSelector((state: RootState) => state.extra);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -116,9 +115,9 @@ const Account = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div id={Theme === "dark" ? styles.contDark : styles.cont}>
       {props.create && (
-        <div id={styles.create}>
+        <div id={Theme === "dark" ? styles.createDark : styles.create}>
           <h2>CREATE YOUR ACCOUNT</h2>
 
           <form onSubmit={handleCreateAccount}>
