@@ -2,6 +2,11 @@
 
 #home {
   background-color: $background-color-light;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
 
   footer {
     display: flex;
@@ -12,11 +17,16 @@
 
 #homeDark {
   background-color: $background-color-dark;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 
   footer {
     color: $color-dark;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 3rem 0 1rem 0;
   }
 }
