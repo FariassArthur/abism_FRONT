@@ -31,17 +31,14 @@ interface Props {
 }
 
 const Header = (props: Props) => {
-  const [userLink, setUserLink] = useState("/signin");
+  const [userLink, setUserLink] = useState("");
   const [navLinks, setNavLinks] = useState<JSX.Element | null>(null);
   const location = useLocation();
 
   const { token } = useSelector((state: RootState) => state.auth);
+  const loged = localStorage.getItem("token")
   const { Theme } = useSelector((state: RootState) => state.extra);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-
-  useEffect(() => {
-    setUserLink(token ? "/account" : "/login");
-  }, [token]);
   
   const handleLogout = async () => {
     await dispatch(logout());
@@ -57,7 +54,7 @@ const Header = (props: Props) => {
             <Link className={styles.underline} to="/">
               INICIO
             </Link>
-            <Link to={userLink}>USUARIO</Link>
+            <Link to={loged ? "/account" : "/signin"}>USUARIO</Link>
             <Link to="/poems">POEMAS</Link>
           </>
         );
