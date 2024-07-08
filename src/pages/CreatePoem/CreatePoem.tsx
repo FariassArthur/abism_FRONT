@@ -11,9 +11,10 @@ import { IoIosArrowDropright } from "react-icons/io";
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { createPoem } from "../../slices/poemSlice";
+import { RootState } from "../../store";
 
 const CreatePoem = () => {
   const [title, setTitle] = useState<string | null>(null);
@@ -21,6 +22,8 @@ const CreatePoem = () => {
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
+  const {Theme} = useSelector((state: RootState) => state.extra)
+  
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const resizeTextarea = () => {
@@ -62,7 +65,7 @@ const CreatePoem = () => {
   };
 
   return (
-    <div id={styles.createPoem}>
+    <div id={Theme === "dark" ? styles.createPoemDark : styles.createPoem}>
       <img src={image} alt="" />
       <div className={styles.container}>
         <BodyHeader searchAssets={false} />

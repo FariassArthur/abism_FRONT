@@ -1,4 +1,10 @@
+@import "../../App.scss";
+
 #createPoem {
+
+  background-color: $background-color-light;
+  color: $color-light;
+
   .containner {
     padding: 0.5rem;
   }
@@ -6,7 +12,7 @@
   .infoPoem {
     padding: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid $border-light;
 
     box-sizing: border-box;
 
@@ -23,7 +29,8 @@
 
     input[type="text"] {
       font-size: xx-large;
-      color: red;
+      color: $title_light;
+      background-color: transparent;
 
       outline: none;
       text-decoration: none;
@@ -45,7 +52,7 @@
       &:hover {
         cursor: pointer;
 
-        background-color: #bbb;
+        background-color: $link-light-hover;
       }
 
       &:active {
@@ -67,6 +74,97 @@
       width: 100%;
       padding: 2rem;
       outline: none;
+      background-color: $background-color-light;
+      color: $color-light;
+      min-height: 80vh;
+
+      resize: none;
+      text-decoration: none;
+    }
+  }
+}
+
+#createPoemDark {
+  background-color: $background-color-dark;
+  color: $color-dark;
+
+  .containner {
+    padding: 0.5rem;
+    background-color: $background-color-dark;
+  }
+
+  .infoPoem {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid $border-dark;
+
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      gap: 0.5rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    input[type="text"] {
+      font-size: xx-large;
+      color: $title_light;
+      background-color: transparent;
+      outline: none;
+      text-decoration: none;
+    }
+
+    .btnSubmit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 100px;
+      width: 3rem;
+      height: 3rem;
+
+      box-sizing: border-box;
+
+      background-color: $background-color-dark;
+      color: $color-dark;
+      
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+
+        background-color: $link-light-hover;
+        color: $background-color-dark;
+      }
+
+      &:active {
+        width: 2rem;
+        height: 2rem;
+
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  .containnerForm {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    background-color: $background-color-dark;
+
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 2rem;
+      outline: none;
+      background-color: $background-color-dark;
+      color: $color-dark;
+      min-height: 80vh;
 
       resize: none;
       text-decoration: none;
