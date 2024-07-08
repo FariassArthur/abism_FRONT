@@ -7,15 +7,14 @@
 
   border-bottom: 1px solid;
   cursor: pointer;
+  a {
+    color: $link_light;
+  }
 
   transition: .1s ease-in-out;
 
   &:hover {
     background-color: $link_light_hover;
-
-    a {
-      color: $color-light;
-    }
   }
 
   &:active {
@@ -34,7 +33,7 @@
   margin-top: 1rem;
   border-radius: 10px;
 
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $border-dark;
   cursor: pointer;
 
   transition: all .1s ease-in-out;
