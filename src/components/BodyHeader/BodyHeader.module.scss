@@ -3,6 +3,7 @@
 #bodyheader {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   justify-content: space-between;
 
   .nav p,
@@ -74,6 +75,7 @@
 
 #bodyheaderDark {
   display: flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
   color: $color-dark;
@@ -105,7 +107,7 @@
       justify-content: center;
 
       border: 1px solid $border-dark;
-      padding: 0.2rem;
+      padding: 0.3rem 0.5rem 0.3rem 0.5rem;
       border-radius: 10px;
 
       input {

@@ -49,3 +49,17 @@
         }
     }
 }
+
+/* MEDIA */
+@media(max-width: $layout_small) {
+    #info, #infoDark {
+        img {
+            display: none;
+        }
+
+        p {
+            text-align: justify;
+        }
+    
+    }
+}
