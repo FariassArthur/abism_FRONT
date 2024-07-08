@@ -190,7 +190,7 @@ const Account = (props: Props) => {
       )}
 
       {props.update && (
-        <div id={styles.update}>
+        <div id={Theme === "dark" ? styles.updateDark : styles.update}>
           <h2>UPDATE YOUR ACCOUNT</h2>
 
           <form onSubmit={handleUpdate}>
@@ -267,7 +267,7 @@ const Account = (props: Props) => {
       )}
 
       {props.login && (
-        <div id={styles.login}>
+        <div id={Theme === "dark" ? styles.loginDark : styles.login}>
           <h2>LOG IN ACCOUNT</h2>
           <form onSubmit={handleLogin}>
             <div className={styles.inputContainner}>

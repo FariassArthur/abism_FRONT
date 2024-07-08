@@ -1,14 +1,36 @@
+@import "../../App.scss";
+
 #update {
-    .content {
-      display: flex;
-      align-items: center;
-      padding: 1rem 2rem 0 2rem;
-      gap: 10rem;
-  
-      img {
-          height: 80vh;
-          border-radius: 25px;
-      }
+  background-color: $background-color-light;
+  color: $color-light;
+  height: 100vh;
+  .content {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem 0 2rem;
+    gap: 10rem;
+
+    img {
+      height: 80vh;
+      border-radius: 25px;
     }
   }
-  
+}
+
+#updateDark {
+  background-color: $background-color-dark;
+  color: $color-dark;
+  height: 100vh;
+
+  .content {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem 0 2rem;
+    gap: 10rem;
+
+    img {
+      height: 80vh;
+      border-radius: 25px;
+    }
+  }
+}
