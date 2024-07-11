@@ -2,7 +2,7 @@
 import styles from "./CardsContainner.module.scss"
 
 //components
-import Card from "../Card/Card"
+//import Card from "../Card/Card"
 
 const CardsContainner = () => {
   return (
@@ -10,9 +10,9 @@ const CardsContainner = () => {
         <h2>Poemas</h2>
 
         <section>
+            {/* <Card />
             <Card />
-            <Card />
-            <Card />
+            <Card /> */}
         </section>
     </div>
   )

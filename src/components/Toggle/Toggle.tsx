@@ -15,7 +15,7 @@ const Toggle = () => {
   return (
     <div onClick={() => click ? setClick(false) : setClick(true)} id={styles.toggle}>
 
-      {click && <Header toggle={true} />}
+      {click && <Header sticky={false} toggle={true} />}
       
       <div className={styles.iconToggle}>
         <FaArrowsAltH />

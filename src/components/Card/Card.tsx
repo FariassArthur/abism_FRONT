@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 //router
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import styles from "./Card.module.scss";
 
 //icons
-import { FcLike } from "react-icons/fc";
+//import { FcLike } from "react-icons/fc";
 
 //redux
 import { RootState } from "../../store";
