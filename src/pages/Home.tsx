@@ -4,7 +4,7 @@ import styles from "./Home.module.scss";
 //component
 import Title from "../components/Title/Title";
 import Info from "../components/Informacoes/Info";
-import CardsContainner from "../components/CardsContainner/CardsContainner";
+//import CardsContainner from "../components/CardsContainner/CardsContainner";
 import Header from "../components/Header/Header";
 
 //redux

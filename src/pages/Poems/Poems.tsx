@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 //styles
 import styles from "./Poems.module.scss";
