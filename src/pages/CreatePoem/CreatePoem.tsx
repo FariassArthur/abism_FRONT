@@ -22,8 +22,8 @@ const CreatePoem = () => {
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  const {Theme} = useSelector((state: RootState) => state.extra)
-  
+  const { Theme } = useSelector((state: RootState) => state.extra);
+
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const resizeTextarea = () => {
@@ -60,14 +60,14 @@ const CreatePoem = () => {
       console.error("Erro ao criar poema:", err);
     }
 
-    setTitle("")
-    setContent("")
+    setTitle("");
+    setContent("");
   };
 
   return (
     <div id={Theme === "dark" ? styles.createPoemDark : styles.createPoem}>
       <img src={image} alt="" />
-      <div className={styles.container}>
+      <div className={styles.containner}>
         <BodyHeader searchAssets={false} />
 
         <form onSubmit={handleCreatePoem}>
@@ -80,9 +80,6 @@ const CreatePoem = () => {
                 value={title || ""}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <p>
-                by: <span>Florencio</span>
-              </p>
             </div>
 
             <button className={styles.btnSubmit} type="submit">

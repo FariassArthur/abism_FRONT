@@ -7,7 +7,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  min-width: 80vh;
+  min-width: 80vw;
   position: relative;
 
   form {
@@ -34,7 +34,7 @@
         color: $color-light;
         text-decoration: none;
         outline: none;
-        padding: .3rem;
+        padding: 0.3rem;
       }
     }
 
@@ -96,7 +96,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  min-width: 80vh;
+  min-width: 80vw;
   position: relative;
 
   form {
@@ -122,7 +122,7 @@
         color: $color-dark;
         text-decoration: none;
         outline: none;
-        padding: .3rem;
+        padding: 0.3rem;
       }
     }
 
@@ -166,7 +166,6 @@
     position: absolute;
     left: 1rem;
     bottom: 1rem;
-    
 
     a {
       color: $link_dark;
@@ -185,7 +184,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  min-width: 80vh;
+  min-width: 80vw;
   position: relative;
   color: $color-light;
 
@@ -212,7 +211,7 @@
         color: $color-light;
         text-decoration: none;
         outline: none;
-        padding: .3rem;
+        padding: 0.3rem;
       }
     }
 
@@ -276,7 +275,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  min-width: 80vh;
+  min-width: 80vw;
   position: relative;
   color: $color-dark;
 
@@ -303,7 +302,7 @@
         color: $color-dark;
         text-decoration: none;
         outline: none;
-        padding: .3rem;
+        padding: 0.3rem;
       }
     }
 
@@ -367,7 +366,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  min-width: 80vh;
+  min-width: 80vw;
   position: relative;
   color: $color-light;
 
@@ -394,7 +393,7 @@
         color: $color-light;
         text-decoration: none;
         outline: none;
-        padding: .3rem;
+        padding: 0.3rem;
       }
     }
 
@@ -458,7 +457,7 @@
   box-sizing: border-box;
   padding: 1rem 1rem 4rem 1rem;
   gap: 3rem;
-  min-width: 80vh;
+  min-width: 80vw;
   position: relative;
   color: $color-dark;
 
@@ -485,7 +484,7 @@
         color: $color-dark;
         text-decoration: none;
         outline: none;
-        padding: .3rem;
+        padding: 0.3rem;
       }
     }
 
@@ -541,4 +540,3 @@
     }
   }
 }
-
