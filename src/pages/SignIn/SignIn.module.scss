@@ -38,3 +38,20 @@
   }
 }
 
+@media(max-width: 960px) {
+  #signIn, #signInDark {
+    .content {
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem;
+      gap: 0rem;
+      
+      img{
+        display: none;
+      }
+    }
+  }
+}
+
