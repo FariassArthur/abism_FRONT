@@ -1,10 +1,10 @@
 # Página para publicação de poemas
 
-![GitHub repo size](https://img.shields.io/github/repo-size/FariassArthur/calculator-imc?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/FariassArthur/calculator-imc?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/FariassArthur/calculator-imc?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/FariassArthur/calculator-imc?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/FariassArthur/calculator-imc?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/FariassArthur/abism_FRONT?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/FariassArthur/abism_FRONT?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/FariassArthur/abism_FRONT?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/FariassArthur/abism_FRONT?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/FariassArthur/abism_FRONT?style=for-the-badge)
 
 O front-end do Abismo Poético é desenvolvido com React e TypeScript, proporcionando uma estrutura robusta e eficiente para a construção da interface do usuário. Utilizamos Redux para gerenciar o estado da aplicação de forma centralizada, facilitando a manutenção e a escalabilidade do código. O uso de SCSS permite estilizações mais dinâmicas e modulares, garantindo uma aparência atraente e moderna.
  - Link de acesso: https://front-abism.vercel.app/
