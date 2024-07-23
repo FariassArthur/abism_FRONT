@@ -14,14 +14,14 @@ const Info = (props: ThemeType) => {
 
       <section>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-          eum optio ab numquam doloremque alias quis voluptatibus iste
-          architecto, nesciunt eaque quo, animi similique minima mollitia ipsa
-          dolores. Laboriosam, vel. Lorem ipsum dolor, sit amet consectetur
-          adipisicing elit. Hic vero voluptatibus ducimus, quo sunt provident!
-          Necessitatibus corporis reiciendis quos natus itaque eligendi
-          molestias expedita error nostrum illum, repellat blanditiis
-          voluptatibus.
+          Bem-vindo ao Abismo Poético, um espaço dedicado à expressão e à
+          criatividade através da poesia. Aqui, você pode compartilhar seus
+          poemas, explorar as criações de outros escritores e refinar suas obras
+          com nossas ferramentas de edição intuitivas. Queremos que cada verso e
+          estrofe ganhem vida, proporcionando uma plataforma onde a beleza das
+          palavras pode ser apreciada e aprimorada. Entre, mergulhe em suas
+          emoções e deixe sua criatividade fluir neste abismo de inspiração
+          literária.
         </p>
         <img src={image} alt="" />
       </section>
