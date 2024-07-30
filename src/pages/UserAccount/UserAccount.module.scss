@@ -1,5 +1,6 @@
 @import "../../App.scss";
 
+
 .loading {
   display: flex;
   align-items: center;
@@ -24,8 +25,16 @@
 }
 
 #userAccount {
+  box-sizing: border-box;
   background-color: $background-color-light;
-  height: 100vh;
+  min-height: 110vh;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+
+
   .containner {
     padding: 0.5rem;
 
@@ -102,9 +111,17 @@
 }
 
 #userAccountDark {
+  box-sizing: border-box;
   background-color: $background-color-dark;
+  min-height: 110vh;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
 
   color: $color-dark;
+
   .containner {
     padding: 0.5rem;
 
@@ -140,8 +157,9 @@
       align-items: flex-start;
       padding: 0.5rem;
 
-      background-color: $background-color-dark;
-      height: 90vh;
+      background-color: transparent;
+      height: 100%;
+      width: 100vw;
 
       gap: 1rem;
 

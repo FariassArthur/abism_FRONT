@@ -156,7 +156,7 @@ const Header = (props: Props) => {
         <>
           <section className={styles.navlinks}>{navLinks}</section>
 
-          <section className={styles.navIcons}>
+          <section className={styles.iconsSection}>
             <div className={styles.icon}>
               {!token && (
                 <Link to="/signin">

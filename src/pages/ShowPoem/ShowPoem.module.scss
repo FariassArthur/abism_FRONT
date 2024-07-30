@@ -6,6 +6,7 @@
 
   .containner {
     padding: 0.5rem;
+    background-color: $background-color-light;
   }
 
   .infoPoem {
@@ -48,6 +49,7 @@
 
       transition: 0.2s ease-in-out;
       background-color: $link_light;
+      color: $color-dark;
 
       &:hover {
         cursor: pointer;
@@ -115,8 +117,8 @@
     input[type="text"] {
       font-size: xx-large;
       color: $title_dark;
-
       background-color: transparent;
+
       outline: none;
       text-decoration: none;
     }
@@ -154,17 +156,16 @@
 
   .containnerForm {
     width: 100%;
-    height: auto;
     box-sizing: border-box;
-    background-color: $background-color-dark;
-    min-height: 65vh;
+    min-height: 60vh;
 
     textarea {
       box-sizing: border-box;
       width: 100%;
+      min-height: 90vh;
       padding: 2rem;
       outline: none;
-      background-color: transparent;
+      background-color: $background-color-dark;
       color: $color-dark;
 
       resize: none;

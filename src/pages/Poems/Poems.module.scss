@@ -1,6 +1,13 @@
 @import "../../App.scss";
 
 #poems {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: $background-color-dark;
+  min-height: 100vh;
+  height: 100%;
+
   .content {
     padding: 1rem;
     background-color: $background-color-light;
@@ -15,8 +22,13 @@
 }
 
 #poemsDark {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   background-color: $background-color-dark;
-  
+  min-height: 100vh;
+  height: 100%;
+
   .content {
     padding: 1rem;
     min-height: 90vh;
