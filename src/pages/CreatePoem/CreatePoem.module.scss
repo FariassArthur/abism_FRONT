@@ -48,6 +48,7 @@
       box-sizing: border-box;
 
       transition: 0.2s ease-in-out;
+      background-color: $link_light;
 
       &:hover {
         cursor: pointer;

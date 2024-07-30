@@ -85,7 +85,7 @@
   box-sizing: border-box;
 
   height: 25rem;
-  min-width: 20%;
+  width: 20%;
   padding: 2rem 1rem 2rem 1rem;
   gap: 2rem;
 
@@ -150,6 +150,25 @@
         color: $link_dark_hover;
         border-bottom: 1px solid $border-dark;
       }
+    }
+  }
+}
+
+@media(max-width: 576px) {
+
+  #card,
+  #cardDark {
+
+    height: 20rem;
+    min-width: 20%;
+    padding: 1rem 3rem 1rem 3rem;
+
+    .info {
+      gap: 1.5rem;
+    }
+
+    .textCard {
+      display: none;
     }
   }
 }

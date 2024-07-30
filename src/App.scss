@@ -6,13 +6,13 @@ $layout_small: 576px;
 
 
 $title_light: #CD8D7A;
-$link_light: #040D12;
-$link_light_hover: #DBCC95;
-$background-color-light: #EAECCC;
+$link_light: #708871;
+$link_light_hover: #BEC6A0;
+$background-color-light: #FEF3E2;
 $color-light: #040D12;
 $shadow-color-light: #C3E2C2;
-$border-light: #bbb;
-$button-hover: #DBCC95;
+$border-light: #606676;
+$button-hover: #BEC6A0;
 
 $title_dark: #183d3d;
 $link_dark: #5C8374;
@@ -31,7 +31,7 @@ $border-dark: #bbb;
 
 #app {
     width: 100%;
-    box-sizing: border-box;
+    height: 100%;
 }
 
 img {
