@@ -1,6 +1,9 @@
 @import "../../App.scss";
 
 #showPoem {
+  background-color: $background-color-light;
+  color: $color-light;
+
   .containner {
     padding: 0.5rem;
   }
@@ -26,6 +29,7 @@
     input[type="text"] {
       font-size: xx-large;
       color: $title_light;
+      background-color: transparent;
 
       outline: none;
       text-decoration: none;
@@ -62,9 +66,8 @@
 
   .containnerForm {
     width: 100%;
-    height: auto;
     box-sizing: border-box;
-    min-height: 65vh;
+    min-height: 60vh;
 
 
     textarea {
@@ -73,6 +76,8 @@
       min-height: 90vh;
       padding: 2rem;
       outline: none;
+      background-color: $background-color-light;
+      color: $color-light;
 
       resize: none;
       text-decoration: none;
@@ -86,6 +91,7 @@
 
   .containner {
     padding: 0.5rem;
+    background-color: $background-color-dark;
   }
 
   .infoPoem {
@@ -128,6 +134,8 @@
 
       transition: 0.2s ease-in-out;
       background-color: $link_dark;
+      color: $color-dark;
+      
 
       &:hover {
         cursor: pointer;

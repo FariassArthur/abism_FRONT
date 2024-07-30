@@ -2,7 +2,7 @@
 
 #poems {
   .content {
-    padding: 1rem 2rem 0 2rem;
+    padding: 1rem;
     background-color: $background-color-light;
     min-height: 90vh;
   }
@@ -18,7 +18,7 @@
   background-color: $background-color-dark;
   
   .content {
-    padding: 1rem 2rem 0 2rem;
+    padding: 1rem;
     min-height: 90vh;
     background-color: $background-color-dark;
   }
