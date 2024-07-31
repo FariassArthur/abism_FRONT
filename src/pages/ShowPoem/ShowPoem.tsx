@@ -114,7 +114,7 @@ const ShowPoem = () => {
   return (
     <div id={Theme === "dark" ? styles.showPoemDark : styles.showPoem}>
       <img src={image} alt="" />
-      <div className={styles.container}>
+      <div className={styles.containner}>
         <BodyHeader searchAssets={false} />
 
         <form onSubmit={handleEdit}>

@@ -115,6 +115,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 
     div {
       gap: 0.5rem;

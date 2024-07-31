@@ -174,9 +174,9 @@ const Header = (props: Props) => {
               {Theme === "dark" ? <BsSun size={15} /> : <FaMoon size={15} />}
             </div>
 
-            <div className={styles.icon}>
+            {/* <div className={styles.icon}>
               <GrLanguage size={15} />
-            </div>
+            </div> */}
 
             {token && (
               <div onClick={handleLogout} className={styles.icon}>
