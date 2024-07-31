@@ -6,22 +6,25 @@ import image from "../../assets/images/headerimage.png";
 
 //icons
 import { MdEdit } from "react-icons/md";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 // component
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
 //router
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { takeById, editPoemSlice } from "../../slices/poemSlice";
+import { takeById, editPoemSlice, deletePoem } from "../../slices/poemSlice";
+import { takeUserById } from "../../slices/userSlice";
 import { RootState } from "../../store";
 
 const ShowPoem = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const navigate = useNavigate()
 
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
@@ -29,12 +32,10 @@ const ShowPoem = () => {
 
   const checkOwner = (userId: string) => {
     const userIdLocal = localStorage.getItem("id");
-    if (userId === userIdLocal) {
+    if (userId == userIdLocal) {
       setOwner(true);
-      console.log("deu certo");
     } else {
       setOwner(false);
-      console.log("não é o dono");
     }
   };
 
@@ -55,15 +56,18 @@ const ShowPoem = () => {
 
   const { poemUnique: poem } = useSelector((state: RootState) => state.poem);
   const { Theme } = useSelector((state: RootState) => state.extra);
-  console.log(poem);
 
   useEffect(() => {
     if (poem) {
       setTitle(poem.title);
       setContent(poem.content);
-      checkOwner(poem.userid); // Certifique-se de que o poema tem uma propriedade userId ou algo similar
+      checkOwner(poem.userid);
+      dispatch(takeUserById(poem.userid));
     }
   }, [poem]);
+
+  const { userById } = useSelector((state: RootState) => state.user);
+  console.log({ userById });
 
   useEffect(() => {
     resizeTextarea(); // Initial resize
@@ -82,7 +86,6 @@ const ShowPoem = () => {
 
   const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const data = {
       id,
       title,
@@ -91,10 +94,22 @@ const ShowPoem = () => {
 
     try {
       await dispatch(editPoemSlice(data));
+      navigate("/account")
     } catch (error) {
       console.error("Erro ao atualizar poema:", error);
     }
   };
+
+  const handleDelete = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      await dispatch(deletePoem(id!))
+      navigate("/account")
+    } catch (error) {
+      console.error("Erro ao deletar poema:", error);
+    }
+  }
 
   return (
     <div id={Theme === "dark" ? styles.showPoemDark : styles.showPoem}>
@@ -113,15 +128,22 @@ const ShowPoem = () => {
                 onChange={(e) => setTitle(e.target.value)}
                 disabled={!owner}
               />
-              <p>
-                by: <span>Florencio</span>
-              </p>
+              {userById && (
+                <p>
+                  by: <span>{userById.name}</span>
+                </p>
+              )}
             </div>
 
             {owner && (
-              <button className={styles.btnSubmit} type="submit">
-                <MdEdit size={20} className={styles.iconArrow} />
-              </button>
+              <section className={styles.sectionBtn}>
+                <div className={styles.btnDelete} onClick={handleDelete}>
+                  <FaRegTrashAlt size={20} />
+                </div>
+                <button className={styles.btnSubmit} type="submit">
+                  <MdEdit size={20} className={styles.iconArrow} />
+                </button>
+              </section>
             )}
           </section>
 

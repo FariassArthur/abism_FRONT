@@ -49,6 +49,7 @@
 
       transition: 0.2s ease-in-out;
       background-color: $link_light;
+      color: $color-light;
 
       &:hover {
         cursor: pointer;
@@ -131,7 +132,7 @@
 
       box-sizing: border-box;
 
-      background-color: $background-color-dark;
+      background-color: $link-dark;
       color: $color-dark;
       
       transition: 0.2s ease-in-out;
@@ -139,7 +140,7 @@
       &:hover {
         cursor: pointer;
 
-        background-color: $link-light-hover;
+        background-color: $link-dark-hover;
         color: $background-color-dark;
       }
 
