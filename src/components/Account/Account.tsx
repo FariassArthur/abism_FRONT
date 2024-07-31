@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import styles from "./Account.module.scss";
 
 //router
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +30,7 @@ const Account = (props: Props) => {
   const { loading, error } = useSelector((state: RootState) => state.auth);
   const { user } = useSelector((state: RootState) => state.user);
   const { Theme } = useSelector((state: RootState) => state.extra);
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -62,6 +63,7 @@ const Account = (props: Props) => {
 
     try {
       await dispatch(register(user)); // Aguarde a conclusão da ação register
+      navigate("/account");
     } catch (error) {
       console.error("Erro ao registrar:", error);
     }
@@ -81,6 +83,7 @@ const Account = (props: Props) => {
 
     try {
       await dispatch(login(user));
+      navigate("/account");
     } catch (error) {
       console.error("Erro ao logar:", error);
     }
@@ -101,6 +104,7 @@ const Account = (props: Props) => {
 
       try {
         await dispatch(update(user));
+        navigate("/account");
       } catch (error) {
         console.error("Erro ao atualizar:", error);
       }
@@ -197,6 +201,7 @@ const Account = (props: Props) => {
             <div className={styles.inputContainner}>
               <label htmlFor="name">Name:</label>
               <input
+                placeholder="Atualize seu nome"
                 required
                 type="text"
                 name="name"
@@ -208,6 +213,7 @@ const Account = (props: Props) => {
             <div className={styles.inputContainner}>
               <label htmlFor="email">Email:</label>
               <input
+                placeholder="Atualize seu email"
                 required
                 type="email"
                 name="email"
@@ -219,6 +225,7 @@ const Account = (props: Props) => {
             <div className={styles.inputContainner}>
               <label htmlFor="pass">Password:</label>
               <input
+                placeholder="Atualize sua senha"
                 required
                 type="text"
                 name="pass"
@@ -230,6 +237,7 @@ const Account = (props: Props) => {
             <div className={styles.inputContainner}>
               <label htmlFor="confirmPass">Confirm Password:</label>
               <input
+                placeholder="Confirme sua senha"
                 required
                 type="text"
                 name="confirmPass"
@@ -285,6 +293,7 @@ const Account = (props: Props) => {
             <div className={styles.inputContainner}>
               <label htmlFor="pass">Password:</label>
               <input
+                placeholder="Adicione sua senha"
                 required
                 type="password"
                 name="pass"

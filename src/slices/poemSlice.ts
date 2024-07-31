@@ -88,6 +88,22 @@ export const editPoemSlice = createAsyncThunk(
   }
 );
 
+export const deletePoem = createAsyncThunk(
+  "poem/deletePoem",
+  async (id: string, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const token: any = state.auth.token;
+
+    if (!token) {
+      // Handle missing token (throw error, dispatch separate action, etc.)
+      console.error("Token not found in Redux state");
+      return; // Or throw an error with a specific message
+    }
+
+    await poemService.deletePoem(id, token)
+  }
+);
+
 export const poemSlice = createSlice({
   name: "poem",
   initialState,

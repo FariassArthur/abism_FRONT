@@ -30,7 +30,7 @@ const update = async (data: any, token: any) => {
   };
 
   try {
-    const res: AxiosResponse<any> = await axios.post(
+    const res: AxiosResponse<any> = await axios.patch(
       api + "/users/update",
       data,
       config
@@ -54,10 +54,20 @@ const takeAllUsers = async () => {
   }
 };
 
+const takeUserByIdService = async (id: string) => {
+  try {
+    const res = await axios.get(`${api}/users/takebyid/${id}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const userService = {
   profile,
   update,
   takeAllUsers,
+  takeUserByIdService,
 };
 
 export default userService;

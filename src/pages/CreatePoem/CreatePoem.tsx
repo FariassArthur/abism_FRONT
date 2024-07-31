@@ -10,6 +10,9 @@ import { IoIosArrowDropright } from "react-icons/io";
 // component
 import BodyHeader from "../../components/BodyHeader/BodyHeader";
 
+//router
+import { useNavigate } from "react-router-dom";
+
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
@@ -19,6 +22,8 @@ import { RootState } from "../../store";
 const CreatePoem = () => {
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
@@ -56,6 +61,7 @@ const CreatePoem = () => {
 
     try {
       await dispatch(createPoem(poem));
+      navigate("/account");
     } catch (err) {
       console.error("Erro ao criar poema:", err);
     }

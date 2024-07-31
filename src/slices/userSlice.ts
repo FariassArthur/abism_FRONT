@@ -11,6 +11,7 @@ interface User {
 interface UserState {
   user: User | null; // Aqui, 'User' é apenas um tipo
   users: User[] | null;
+  userById: User | null;
   loading: boolean;
   error: any;
   success: boolean;
@@ -20,6 +21,7 @@ interface UserState {
 const initialState: UserState = {
   user: null, // Não use 'User' aqui como valor
   users: null,
+  userById: null,
   error: false,
   success: false,
   loading: false,
@@ -53,6 +55,14 @@ export const profile = createAsyncThunk("user/profile", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const takeUserById = createAsyncThunk(
+  "user/takeUserById",
+  async (id: string) => {
+    const data = await userService.takeUserByIdService(id);
+    return data.user;
+  }
+);
 
 export const update = createAsyncThunk(
   "user/update",
@@ -121,6 +131,22 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         state.users = null;
+      })
+      .addCase(takeUserById.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(takeUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+        state.success = true;
+        state.userById = action.payload;
+      })
+      .addCase(takeUserById.rejected, (state, action) => {
+        state.loading = false;
+        state.success = false;
+        state.userById = null;
+        state.error = action.payload;
       });
   },
 });

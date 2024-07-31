@@ -19,6 +19,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 
     div {
       gap: 0.5rem;
@@ -36,7 +38,14 @@
       text-decoration: none;
     }
 
-    .btnSubmit {
+    .sectionBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btnSubmit, .btnDelete {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -123,7 +132,14 @@
       text-decoration: none;
     }
 
-    .btnSubmit {
+    .sectionBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btnSubmit, .btnDelete {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -141,7 +157,7 @@
 
       &:hover {
         cursor: pointer;
-
+        color: $background-color-dark;
         background-color: $link_dark_hover;
       }
 
